@@ -1,0 +1,139 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Poppins', sans-serif;
+    color: aliceblue;
+}
+
+.main-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 384px;
+    width: 512px;
+    padding: 0px 4px 0px 4px;
+    background-color: #0d0d0d;
+}
+
+.head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+    margin-bottom: 0px;
+    width: 95%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.head-back {
+    font-size: 32px;
+    text-decoration: none;
+    color: #b71c1c;
+}
+
+.header h1 {
+    display: flex;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.img {
+    height: 24px;
+    margin-top: 12px
+}
+
+.head-content {
+    display: flex;
+    font-size: 11px;
+    text-indent: 2em;
+    height: fit-content;
+    margin: 8px 8px 8px 8px;
+    color: aliceblue;
+}
+
+.head-content1 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 11px;
+    margin: 0px 8px 0px 8px;
+    color: aliceblue;
+}
+
+.cu-img-txt {
+    height: 32px;
+    width: auto;
+    margin-bottom: 8px;
+}
+
+.cu-img {
+    height: 64px;
+    width: auto;
+    margin-right: 8px;
+}
+
+
+
+.content-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 240px;
+    width: 95%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
+    width: 44%;
+    padding: 0px 8px 0px 8px;
+    font-size: 10px;
+    background-color: #b71c1c;
+    border-radius: 8px;
+    box-shadow: 0 0 20px #e6e6fa;
+}
+
+.content-upper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 128px;
+    font-size: 10px;
+}
+
+.content p {
+    text-indent: 2em;
+}
+
+.social-icons {
+    display: flex;
+    margin-bottom: 4px  ;
+}
+
+.fab {
+    color: aliceblue;
+    padding: 4px;
+    height: 16px;
+    font-size: 18px;
+}
+
+.fas {
+    color: aliceblue;
+    padding: 4px;
+    height: 16px;
+    font-size: 18px;
+}
