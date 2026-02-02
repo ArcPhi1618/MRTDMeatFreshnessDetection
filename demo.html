@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Card</title>
+<style>
+  body {
+    background-color: #800000; /* deep maroon background */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .profile-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #a52a2a; /* lighter maroon */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 500px;
+    gap: 20px;
+  }
+
+  .profile-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .profile-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .social-icons {
+    margin-top: 15px;
+  }
+
+  .social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+
+  .social-icons a:hover {
+    color: #ffcccb;
+  }
+</style>
+</head>
+<body>
+  <div class="profile-card">
+    <img src="profile.jpg" alt="Profile Photo">
+    <div>
+      <div class="profile-text">
+        <p><strong>The eldest daughter among two siblings, Riclyn strives to become an engineer not only for herself but also to give back to her family.</strong></p>
+        <p>Her dedication and perseverance fuel her journey in Computer Engineering. She thought of the concept of Fresh Track during a lighthearted conversation with her friend Von Lander while a teacher was lecturing. What started as a random “chika” turned into an inspiring idea, proof that even casual moments can spark innovations that matter.</p>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
