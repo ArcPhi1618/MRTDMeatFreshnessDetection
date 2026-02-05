@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/mrtd_landing.css">
+    <link rel="stylesheet" href="css-mrtd_landing.css">
     <link href="https://fonts.googleapis.com/css?family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <title> mrtd </title>
 </head>
@@ -19,9 +19,9 @@
         <div class="header-main">  
             <nav class="header-nav">
                 <img class="hn-img" src="images/LOGO_THESIS.png">
-                <a class="hni" href="mrtd_about.php"> About </a>
-                <a class="hni" href="mrtd_howToUse.php"> HowToUse </a>
-                <a class="hni" href="mrtd_contactUs.php"> ContactUs </a>
+                <a class="hni" href="cpe-mrtd_about.php"> About </a>
+                <a class="hni" href="cpe-mrtd_howToUse.php"> HowToUse </a>
+                <a class="hni" href="cpe-mrtd_contactUs.php"> ContactUs </a>
             </nav>
             <div class="header-title">
                 <div class="ht">
@@ -56,7 +56,7 @@
         </div>
         <div class="footer-btn">
             <div class="lf-btn-con">
-                <a class="lf-btn" href="mrtd_main.php"> ➜ </a>
+                <a class="lf-btn" href="cpe-mrtd_main.php"> ➜ </a>
                 <label> To Main Page </label>
             </div>
         </div>

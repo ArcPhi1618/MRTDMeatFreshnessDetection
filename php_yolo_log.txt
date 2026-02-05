@@ -32,3 +32,58 @@ Traceback (most recent call last):
 RuntimeError: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 2359296 bytes.
 
 
+2026-02-03 22:57:06
+"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159410.1474.jpg" "0.3" 2>&1
+Creating new Ultralytics Settings v0.0.6 file  
+View Ultralytics Settings with 'yolo settings' or at 'C:\WINDOWS\system32\config\systemprofile\AppData\Roaming\Ultralytics\settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
+{"status": "ok", "predictions": []}
+
+
+2026-02-03 23:05:55
+"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159935.4745.jpg" "0.3" 2>&1
+{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"kept_detections": 0}}
+{"status": "ok", "predictions": []}
+
+
+2026-02-03 23:06:41
+"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159993.5301.jpg" "1" 2>&1
+{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"kept_detections": 0}}
+{"status": "ok", "predictions": []}
+
+
+2026-02-03 23:07:04
+"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770160015.5917.jpg" "1" 2>&1
+{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
+{"debug": {"kept_detections": 0}}
+{"status": "ok", "predictions": []}
+
+
+2026-02-04 00:40:35 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2262 ms: Couldn't connect to server
+2026-02-04 00:40:35 SUBPROCESS_CMD=python ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/py-model_predict.py^" ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/uploads/img_69829580e2fb8.jpg^" ^"0.3^"
+
+2026-02-04 00:41:11 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2261 ms: Couldn't connect to server
+2026-02-04 00:41:11 SUBPROCESS_CMD=python ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/py-model_predict.py^" ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/uploads/img_698295a579f22.jpg^" ^"0.3^"
+
+2026-02-04 00:41:48 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2262 ms: Couldn't connect to server
+2026-02-04 00:41:57 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698295ca30814.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698295ca30814_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.371, "points": [[292, 228], [294, 51], [118, 49], [116, 22
+2026-02-04 00:58:22 CURL_FAIL server=http://localhost:5555/predict http=500 err=
+2026-02-04 00:58:31 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698299adee6ef.jpg" "0.2" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 35, in <module>
+    results = model.predict(
+        source=image_path,
+    ...<2 lines>.
+2026-02-04 00:58:31 CURL_FAIL server=http://localhost:5555/predict http=500 err=
+2026-02-04 00:58:40 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698299b7a0cf5.jpg" "0.2" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 35, in <module>
+    results = model.predict(
+        source=image_path,
+    ...<2 lines>.
