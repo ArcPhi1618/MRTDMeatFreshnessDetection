@@ -87,3 +87,286 @@ Traceback (most recent call last):
     results = model.predict(
         source=image_path,
     ...<2 lines>.
+2026-02-07 09:34:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2230 ms: Couldn't connect to server
+2026-02-07 09:34:58 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_6987072ae1df3.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_6987072ae1df3_detected.jpg", "predictions": [{"name": "Spoiled Beef", "conf": 0.592, "points": [[270, 137], [270, 0], [26, 0], [26, 137]]}, {
+2026-02-07 09:35:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2245 ms: Couldn't connect to server
+2026-02-07 09:35:59 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_6987076880973.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_6987076880973_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.829, "points": [[218, 141], [218, 2], [39, 2], [40, 142]]}
+2026-02-07 09:37:50 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2215 ms: Couldn't connect to server
+2026-02-07 09:38:09 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698707ebceff3.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698707ebceff3_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.379, "points": [[300, 132], [300, 5], [156, 5], [155, 132]
+2026-02-07 09:50:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2216 ms: Couldn't connect to server
+2026-02-07 09:50:04 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870ac9cf7a5.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
+2026-02-07 09:50:37 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aeacdf3c.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
+2026-02-07 09:50:38 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aec593c3.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:39 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2216 ms: Couldn't connect to server
+2026-02-07 09:50:39 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aed9a5a1.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:42 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2233 ms: Couldn't connect to server
+2026-02-07 09:50:42 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af042188.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:45 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
+2026-02-07 09:50:45 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af347a3b.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:48 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2246 ms: Couldn't connect to server
+2026-02-07 09:50:48 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af65b1e7.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:51 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2250 ms: Couldn't connect to server
+2026-02-07 09:50:51 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af956eca.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:54 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
+2026-02-07 09:50:54 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870afc458bf.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:50:57 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
+2026-02-07 09:50:57 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aff5bb11.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:00 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
+2026-02-07 09:51:00 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b02488f4.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:03 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
+2026-02-07 09:51:03 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0553984.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:06 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
+2026-02-07 09:51:06 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0858461.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:09 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
+2026-02-07 09:51:09 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0b4f14d.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:12 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2233 ms: Couldn't connect to server
+2026-02-07 09:51:12 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0e51b32.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:15 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2232 ms: Couldn't connect to server
+2026-02-07 09:51:16 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b11460c6.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:20 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2243 ms: Couldn't connect to server
+2026-02-07 09:51:20 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b160f4e4.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:23 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2261 ms: Couldn't connect to server
+2026-02-07 09:51:23 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b195b186.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:26 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
+2026-02-07 09:51:26 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b1c48895.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2252 ms: Couldn't connect to server
+2026-02-07 09:51:29 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b1f4afc2.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:32 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
+2026-02-07 09:51:32 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b226869e.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:35 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
+2026-02-07 09:51:35 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b252e61a.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2221 ms: Couldn't connect to server
+2026-02-07 09:51:37 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b270e4b9.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2232 ms: Couldn't connect to server
+2026-02-07 09:51:38 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b27bdc5b.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:40 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
+2026-02-07 09:51:40 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b2a70977.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:55 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
+2026-02-07 09:51:55 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b38e73a2.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:51:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2228 ms: Couldn't connect to server
+2026-02-07 09:51:59 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3cc71fb.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:00 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
+2026-02-07 09:52:00 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3dca19d.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:01 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2253 ms: Couldn't connect to server
+2026-02-07 09:52:01 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3f63ffa.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
+2026-02-07 09:52:04 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4211ca9.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:07 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2218 ms: Couldn't connect to server
+2026-02-07 09:52:07 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b455d106.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:10 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2220 ms: Couldn't connect to server
+2026-02-07 09:52:10 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b485362e.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
+2026-02-07 09:52:13 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4b5dda6.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
+2026-02-07 09:52:16 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4e4cdb5.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:19 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
+2026-02-07 09:52:19 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b514851f.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:22 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
+2026-02-07 09:52:22 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b54525cd.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:25 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2243 ms: Couldn't connect to server
+2026-02-07 09:52:25 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b574b6c9.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:28 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
+2026-02-07 09:52:28 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b5a5e565.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:31 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2237 ms: Couldn't connect to server
+2026-02-07 09:52:31 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b5d45f11.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:34 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
+2026-02-07 09:52:34 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b605787d.jpg" "0.3" 2>&1
+'"python"' is not recognized as an internal or external command,
+operable program or batch file.
+
+2026-02-07 09:52:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
+2026-02-07 09:52:37 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b63549a9.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:40 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2255 ms: Couldn't connect to server
+2026-02-07 09:52:40 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b66418f5.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:44 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
+2026-02-07 09:52:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b69d3fa2.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:47 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2250 ms: Couldn't connect to server
+2026-02-07 09:52:47 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b6d64ca3.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:50 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
+2026-02-07 09:52:50 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7044d10.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:53 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
+2026-02-07 09:52:53 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7345f0b.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:56 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
+2026-02-07 09:52:56 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7653402.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:52:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
+2026-02-07 09:52:59 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7960dee.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:53:02 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
+2026-02-07 09:53:02 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7c47caf.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 09:53:25 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
+2026-02-07 09:53:25 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b935b4b8.jpg" "0.3" 2>&1
+Traceback (most recent call last):
+  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
+    import cv2
+ModuleNotFoundError: No module named 'cv2'
+
+2026-02-07 11:12:02 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2255 ms: Couldn't connect to server
+2026-02-07 11:12:41 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69871e0084073.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_69871e0084073_detected.jpg", "predictions": []}
+

@@ -1,1 +1,3 @@
-pip install ultralytics opencv-python
+ultralytics
+opencv-python
+torch

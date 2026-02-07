@@ -19,7 +19,7 @@ if not os.path.exists(image_path):
 
 # ================= PATHS =================
 BASE = os.path.dirname(__file__)
-MODEL_PATH = os.path.join(BASE, "models", "cpe-mf0937-01.pt")
+MODEL_PATH = os.path.join(BASE, "models", "cpe-mfmrtd-03.pt")
 
 DETECTED_DIR = os.path.join(BASE, "predicted images")
 os.makedirs(DETECTED_DIR, exist_ok=True)

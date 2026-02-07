@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ESP32 YOLO Capture</title>
+<title>ESP32 YOLO & MQ137 Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body { font-family: Arial, sans-serif; background:#f4f4f4; }
 .main { max-width:600px; margin:auto; padding:20px; }
 img { width:100%; border:2px solid #333; background:#000; }
 button { padding:10px 20px; margin:8px 4px; font-size:16px; }
-#prediction { background:#fff; padding:10px; margin-top:10px; border:1px solid #ccc; }
+#prediction, #mq137Data { background:#fff; padding:10px; margin-top:10px; border:1px solid #ccc; }
 </style>
 </head>
 <body>
@@ -35,6 +35,12 @@ button { padding:10px 20px; margin:8px 4px; font-size:16px; }
     </div>
 
     <div id="prediction"></div>
+
+    <!-- ===== MQ-137 SENSOR DATA ===== -->
+    <h3>MQ-137 Sensor Readings</h3>
+    <div id="mq137Data">
+        Loading...
+    </div>
 </div>
 
 <!-- Canvas overlay for drawing boxes -->
@@ -46,8 +52,10 @@ const btn = document.getElementById("captureBtn");
 const conf = document.getElementById("conf");
 const confVal = document.getElementById("confVal");
 const predDiv = document.getElementById("prediction");
+const mqDiv = document.getElementById("mq137Data");
 
-const ESP32_URL = "http://192.168.4.2/capture";
+const ESP32_CAM_URL = "http://192.168.4.2/capture"; // Change if your ESP32-CAM IP is different
+
 let paused = false;
 let streamInterval = null;
 
@@ -57,7 +65,7 @@ conf.oninput = () => confVal.innerText = conf.value + "%";
 function startStream(){
     streamInterval = setInterval(() => {
         if(!paused){
-            cam.src = ESP32_URL + "?t=" + Date.now();
+            cam.src = ESP32_CAM_URL + "?t=" + Date.now();
         }
     }, 500);
 }
@@ -84,7 +92,7 @@ btn.onclick = () => {
     btn.disabled = true;
     predDiv.innerHTML = "Processing...";
 
-    fetch(ESP32_URL)
+    fetch(ESP32_CAM_URL)
     .then(r => r.blob())
     .then(blob => {
         const fd = new FormData();
@@ -120,7 +128,46 @@ btn.onclick = () => {
     });
 };
 
+// ===== MQ-137 SENSOR FETCH =====
+function fetchMQ137(){
+    // Try direct connection first, then fallback to PHP proxy
+    fetchMQ137WithUrl("http://192.168.4.1/mq137");
+}
+
+function fetchMQ137WithUrl(url) {
+    fetch(url)
+    .then(r => {
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+    })
+    .then(data => {
+        mqDiv.innerHTML = `
+            <ul>
+                <li>ADC Value: ${data.adc}</li>
+                <li>Voltage: ${data.voltage.toFixed(3)} V</li>
+                <li>Rs/Ro Ratio: ${data.ratio.toFixed(3)}</li>
+                <li>NH3 Concentration: ${data.nh3_ppm.toFixed(1)} ppm</li>
+            </ul>
+        `;
+    })
+    .catch(err => {
+        // If direct connection fails, try PHP proxy
+        if(url === "http://192.168.4.1/mq137"){
+            console.warn('Direct connection to ESP32 failed, trying PHP proxy...');
+            fetchMQ137WithUrl("mq137_proxy.php");
+        } else {
+            mqDiv.innerHTML = `<strong>Error:</strong> ${err.message}<br/>Make sure ESP32 is online and connected.`;
+            console.error('MQ137 fetch error:', err);
+        }
+    });
+}
+// Fetch every second
+setInterval(fetchMQ137, 1000);
+fetchMQ137(); // initial fetch
+
 // ===== STREAM DETECTION =====
+// (Keep your existing stream detection code as is)
+
 let streamDetect = false;
 let streamIntervalId = null;
 let pendingReq = false;
@@ -144,32 +191,27 @@ function drawBoxesInterpolated(){
     const dt = Math.max(1, now - lastDetectTime);
     const t = Math.min(1, dt / detectInterval);
 
-    // build blended list
     const blended = [];
     const keys = new Set([...Object.keys(prevDetections), ...Object.keys(currDetections)]);
     keys.forEach(k => {
         const a = prevDetections[k];
         const b = currDetections[k];
         if(a && b){
-            // interpolate
             const bbox = [0,0,0,0];
             for(let i=0;i<4;i++) bbox[i] = Math.round(a.bbox[i] * (1-t) + b.bbox[i] * t);
             const conf = a.conf * (1-t) + b.conf * t;
             blended.push({id:k, name:b.name, conf, bbox});
         } else if(b && !a){
-            // new detection: fade in
             const bbox = b.bbox.slice();
             const conf = b.conf * t;
             blended.push({id:k, name:b.name, conf, bbox});
         } else if(a && !b){
-            // disappearing: fade out
             const bbox = a.bbox.slice();
             const conf = a.conf * (1-t);
             if(conf > 0.05) blended.push({id:k, name:a.name, conf, bbox});
         }
     });
 
-    // actual draw
     const ctx = overlay.getContext('2d');
     ctx.clearRect(0,0,overlay.width,overlay.height);
     ctx.lineWidth = 2;
@@ -190,21 +232,18 @@ function drawBoxesInterpolated(){
     });
 }
 
-
 streamBtn.onclick = () => {
     streamDetect = !streamDetect;
     streamBtn.innerText = streamDetect ? 'Stop Stream Detect' : 'Start Stream Detect';
 
     if(streamDetect){
-        // Start loop at target fps
         const fps = Math.max(1, Math.min(15, parseInt(targetFpsInput.value)));
         const interval = 1000 / fps;
         streamIntervalId = setInterval(() => {
-            if(pendingReq) return; // drop frame
+            if(pendingReq) return;
             pendingReq = true;
 
-            // fetch the current frame
-            fetch(ESP32_URL)
+            fetch(ESP32_CAM_URL)
             .then(r => r.blob())
             .then(blob => {
                 const fd = new FormData();
@@ -223,12 +262,10 @@ streamBtn.onclick = () => {
                     console.warn('stream detect failed', data);
                     return;
                 }
-                // update smoothing maps and timing for interpolation
                 const now = Date.now();
                 prevDetections = JSON.parse(JSON.stringify(currDetections));
                 currDetections = {};
                 (data.predictions||[]).forEach(p => { currDetections[p.id||(p.name+'_'+Math.random().toString(36).slice(2,6))] = p; });
-                // update timing
                 detectInterval = Math.max(200, now - lastDetectTime || 200);
                 lastDetectTime = now;
 
@@ -245,11 +282,9 @@ streamBtn.onclick = () => {
     }
 };
 
-// run interpolation draw loop at higher refresh rate for smoothness
 let displayIntervalId = setInterval(() => {
     if(streamDetect) drawBoxesInterpolated();
 }, 1000/20); // 20 fps display
-
 
 // ===== RESUME =====
 function resume(){
@@ -261,12 +296,10 @@ function resume(){
 // ===== SHOW PREDICTIONS =====
 function renderPredictions(preds){
     predDiv.innerHTML = "";
-
     if(!preds || preds.length === 0){
         predDiv.innerText = "No detections";
         return;
     }
-
     const ul = document.createElement("ul");
     preds.forEach(p => {
         const li = document.createElement("li");
