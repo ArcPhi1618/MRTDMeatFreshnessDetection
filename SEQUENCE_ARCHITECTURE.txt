@@ -1,0 +1,65 @@
+Sequence Architecture: MRTDMeatFreshnessDetection
+Date: 2026-02-06
+
+Goal: describe the runtime sequence (end-to-end) and how components interact.
+
+1) Sources of images
+- Browser/UI: user clicks "Capture" on `cpe-mrtd_main.php` which fetches a single frame from an ESP32-CAM (HTTP GET to the ESP32 capture endpoint).
+- ESP32 stream: `<img>` tag periodically updates its `src` to stream frames; UI can request a single frame when capturing.
+
+2) Frontend -> Backend (single-capture flow)
+- User action: JS fetches an image blob from the ESP32 (`fetch(ESP32_URL)` returns a Blob).
+- JS forms a `FormData` containing `image` (blob) and `threshold` and posts to the PHP handler `cpe-save_image.php`.
+
+3) `cpe-save_image.php` (server-side handler)
+- Receives multipart POST and saves it to disk under `uploads/` using a unique filename.
+- Attempts to call the long-running YOLO service at `http://localhost:5555/predict` via cURL with fields: `image`, `threshold`, and any forwarded `boxes_only`, `client_id`, `imgsz`.
+- cURL options: connect timeout 5s, total timeout 60s; response expected JSON.
+- If cURL fails (non-200, empty response, or error), it logs the failure to `php_yolo_log.txt` and falls back to launching the CLI predictor:
+    - Builds a command using `.venv\Scripts\python.exe` if present, otherwise `python`.
+    - Runs `py-model_predict.py <image_path> <threshold>` with `shell_exec`, captures stdout and logs the command + trimmed output.
+- After obtaining JSON from either source, it decodes it and returns simplified JSON to the browser with `path` (decoded annotated image path) and `predictions`.
+
+4) Long-running server: `yolo_server.py` (preferred fast path)
+- Launched by `start_yolo.bat` / `start_yolo.ps1` or manually.
+- Loads `models/cpe-mf0937-01.pt` into memory once (YOLO model via `ultralytics.YOLO`).
+- Exposes `/predict` (POST) and `/health` (GET):
+    - `/predict` accepts multipart `image` and optional params, decodes the image into OpenCV array, runs `model.predict(...)`, post-processes OBB outputs into axis-aligned boxes, applies per-client EMA smoothing (stored in `SMOOTHING_STATE`), optionally returns `boxes_only`, otherwise draws annotated image to `predicted images/` and returns JSON containing `annotated_path` + predictions.
+- Advantages: avoids model reloads per-request; faster steady-state latency.
+
+5) Fallback one-shot: `py-model_predict.py` (CLI)
+- Used when server is unreachable or PHP chooses subprocess path.
+- Loads model, runs prediction on `source=image_path`, draws rotated polygons (OBB) on the image, saves annotated image to `predicted images/`, and prints a single JSON to stdout.
+- PHP reads that stdout and forwards result to the browser.
+
+6) Client-side smoothing & display
+- Two smoothing layers may be active:
+    - Server-side EMA smoothing inside `yolo_server.py` (per-client state keyed by `client_id`).
+    - Client-side interpolation in the JS overlay: it maintains `prevDetections` and `currDetections` and blends boxes for smooth motion between detection updates.
+
+7) Logs and recovery
+- `yolo_server.log`: server stdout/stderr (started by `start_yolo.*`). Check for model load errors, exceptions, and stack traces.
+- `php_yolo_log.txt`: tracks cURL failures, subprocess commands, exceptions from fallback path, and helpful debug lines. Primary starting point for diagnosing PHP->Python interactions.
+
+8) Directory responsibilities
+- `uploads/`: incoming raw frames saved by PHP.
+- `predicted images/`: annotated images written by Python (both server and CLI).
+- `models/`: model artifact `cpe-mf0937-01.pt` required at startup.
+
+9) Failure modes and sequence consequences
+- If `yolo_server.py` is down or not reachable at `localhost:5555`, `cpe-save_image.php` will:
+    - Log `CURL_FAIL` with code and error to `php_yolo_log.txt`.
+    - Attempt `py-model_predict.py` as a blocking subprocess — slower and memory-intensive.
+    - If subprocess also fails to produce valid JSON, PHP returns `invalid response` to the browser including raw output snippet.
+- If the model load in server fails (OOM or missing file), server exits; the start script logs the error to `yolo_server.log` and PHP will use subprocess fallback until server is fixed.
+
+10) Timing and performance notes
+- Client: streaming frame rate limited by ESP32 and JS timing; detection stream mode sends `boxes_only=1` to reduce payload.
+- Server: `DEFAULT_IMG_SIZE` can be lowered for speed; `device` is chosen automatically (`cuda` if available), `half` used only when CUDA present.
+- Subprocess: model is loaded per-request causing high latency and memory usage.
+
+11) Quick sequence summary (short flow)
+User/ESP32 -> Browser JS -> POST `cpe-save_image.php` (save to `uploads/`) -> PHP cURL -> `http://localhost:5555/predict` (fast) -> server returns JSON (annotated image saved under `predicted images/`) -> PHP forwards result -> Browser updates image and overlay.
+If cURL fails -> PHP runs `py-model_predict.py` -> same annotated image + JSON -> Browser.
+
+END
