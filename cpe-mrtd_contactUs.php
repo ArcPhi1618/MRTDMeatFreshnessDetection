@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title> Contact Us </title>
 </head>
-<body>
+<body class="page">
     
     <div class="main-con">
 
@@ -15,9 +15,7 @@
 
         <div class="head">
             <div class="header">
-                <a class="head-back" href="index.php"> 🡨 </a>
                 <h1> ContactUs </h1>
-                <img class="img" src="images/LOGO_THESIS.png">
             </div>
             <p class="head-content"> 
                 We are the creators of DT “Fresh Track”, a research-driven 
@@ -25,7 +23,7 @@
                 trust through real-time spoilage detection.
             </p>
             <p class="head-content1">
-                <img class="cu-img-txt" src="images/LOGO_THESIS.png">
+                <img class="cu-img-txt" src="gui images/LOGO_THESIS.png">
                 stands for Diatera and Tabligan, the surnames of the 
                 developers behind Fresh Track:
             </p>
@@ -36,7 +34,10 @@
         <div class="content-con">
             <div class="content">
                 <div class="content-upper">
-                     <img class="cu-img" src="images\Riclyn pic.png">
+                    <div class="cu-name"> 
+                        <img class="cu-img" src="gui images\Riclyn pic.png">
+                        Ma. Riclyn Diatera 
+                    </div>
                     <p>
                          The eldest daughter among two siblings, Riclyn strives to 
                         become an engineer not only for herself but also to give 
@@ -54,14 +55,17 @@
                 </p>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/mariclyn.diatera"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/ma-riclyn-diatera-439103296/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mariadyatt"><i class="fab fa-github"></i></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mariariclyndiatera@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div class="content">
                 <div class="content-upper">
-                     <img class="cu-img" src="images\Clint pic.jpeg">
+                    <div class="cu-name"> 
+                        <img class="cu-img" src="gui images\Clint pic.jpeg">
+                        Clint John Tabligan
+                    </div>
                     <p>
                         The youngest son among seven siblings, Clint is 
                         determined to follow in the footsteps of his two older 
@@ -79,7 +83,7 @@
                 <div class="social-icons">
                     <a href="https://www.facebook.com/clint.castaneda0254"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/clint161803"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/ArcPhi1618"><i class="fab fa-github"></i></a>
                     <a href="#"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>

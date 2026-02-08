@@ -7,19 +7,17 @@
     <link href="https://fonts.googleapis.com/css?family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <title>MRTD-About</title>
 </head>
-<body>
+<body class="page">
     
     <div class="body">
         <div class="main-con">
 
             <div class="main">
                 <div class="head">
-                    <a class="head-back" href="index.php"> 🡨 </a>
                     <h1 class="lbl"> About </h1>
-                    <img class="img" src="images/LOGO_THESIS.png">
                 </div>
 
-                <div class="content">
+                <div class="content-abt">
                     <p>
                         The Development of a Real-Time IoT-Enabled Spoilage Detection 
                         System also known as “Fresh Track” is a research-driven innovation 
@@ -47,8 +45,12 @@
                         Ultimately, it bridges technology and food safety, offering a 
                         modern way to monitor meat quality and improve consumer trust in 
                         fresh products. 
-                    </p>   
-                </div>
+                    </p> 
+                    <div class=back-btn-con>
+                        <button class="back-btn" onclick="location.href='index.php'">
+                            Back to Home ➜ 
+                        </button>  
+                    </div>
             </div>
 
         </div>

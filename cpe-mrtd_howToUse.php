@@ -7,16 +7,14 @@
     <link href="https://fonts.googleapis.com/css?family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <title>MRTD-How to Use</title>
 </head>
-<body>
+<body class="page">
     
     <div class="body">
         <div class="main-con">
 
             <div class="main">
                 <div class="head">
-                    <a class="head-back" href="index.php"> 🡨 </a>
                     <h1 class="lbl"> How to use </h1>
-                    <img class="img" src="images/LOGO_THESIS.png">
                 </div>
 
                 <div class="content">
@@ -48,6 +46,11 @@
                         All results will be displayed in the system’s Graphical User Interface (GUI) 
                         for easy monitoring and tracking.
                     </p> 
+                    <div class=back-btn-con>
+                        <button class="back-btn" onclick="location.href='index.php'">
+                            Back to Home ➜ 
+                        </button>  
+                    </div>
                 </div>
             </div>
 

@@ -4,17 +4,11 @@
 <meta charset="UTF-8">
 <title>ESP32 YOLO & MQ137 Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body { font-family: Arial, sans-serif; background:#f4f4f4; }
-.main { max-width:600px; margin:auto; padding:20px; }
-img { width:100%; border:2px solid #333; background:#000; }
-button { padding:10px 20px; margin:8px 4px; font-size:16px; }
-#prediction, #mq137Data { background:#fff; padding:10px; margin-top:10px; border:1px solid #ccc; }
-</style>
+    <link rel="stylesheet" href="css-mrtd_main.css">
 </head>
 <body>
 
-<div class="main">
+<div class="main compact">
     <h2>ESP32-CAM YOLO Detection</h2>
 
     <img id="cam">

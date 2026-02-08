@@ -8,7 +8,7 @@
     <title> mrtd </title>
 </head>
 
-<body>
+<body class="page">
 
     <div class="landing-body">
     <div class="landing-main-con">
@@ -18,33 +18,31 @@
     <div class="landing-header">
         <div class="header-main">  
             <nav class="header-nav">
-                <img class="hn-img" src="images/LOGO_THESIS.png">
+                <img class="hn-img" src="gui images/LOGO_THESIS.png">
                 <a class="hni" href="cpe-mrtd_about.php"> About </a>
                 <a class="hni" href="cpe-mrtd_howToUse.php"> HowToUse </a>
                 <a class="hni" href="cpe-mrtd_contactUs.php"> ContactUs </a>
             </nav>
-            <div class="header-title">
-                <div class="ht">
-                    Fresh Track
-                </div>
-            </div>
-        </div>
-        <div class="header-logo">
-            <div class="hl">
-                <img class="hl-img" src="images/LOGO_THESIS.png">
-            </div>
         </div>
     </div>
 
     <!-- ============================================================ -->
 
     <div class="landing-main">
-        <div class="landing-img">
-            <img class="lm-img" src="images/landing page image.png">
+        <div class="landing-text">
+            <div class="landing-title"> Fresh Track </div>
+            <div class="landing-quote">
+                "Where human senses fade, intelligent systems detect - ensuring 
+                meat stay safe, fresh and flavorful."
+            </div>
+            <div class="to-main-btn">
+                    <button class="lf-btn" onclick="location.href='cpe-mrtd_main.php'">
+                        To Main Page ➜ 
+                    </button>
+            </div>
         </div>
-        <div class="landing-quote">
-            "Where human senses fade, intelligent systems detect - ensuring 
-            meat stay safe, fresh and flavorful."
+        <div class="landing-img">
+            <img class="lm-img" src="gui images/landing page image.png">
         </div>
     </div>
 
@@ -53,12 +51,6 @@
     <div class="landing-footer">
         <div class="footer-nav">
             
-        </div>
-        <div class="footer-btn">
-            <div class="lf-btn-con">
-                <a class="lf-btn" href="cpe-mrtd_main.php"> ➜ </a>
-                <label> To Main Page </label>
-            </div>
         </div>
     </div>
 
