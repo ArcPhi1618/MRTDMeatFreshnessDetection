@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css-mrtd_landing.css">
+    <link rel="stylesheet" href="css-mrtd_landing.css?v=1">
     <link href="https://fonts.googleapis.com/css?family=Poltawski+Nowy&display=swap" rel="stylesheet">
     <title> mrtd </title>
 </head>
@@ -37,7 +37,7 @@
             </div>
             <div class="to-main-btn">
                     <button class="lf-btn" onclick="location.href='cpe-mrtd_main.php'">
-                        To Main Page ➜ 
+                        To Main Page ➜
                     </button>
             </div>
         </div>

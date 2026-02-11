@@ -370,3 +370,77 @@ ModuleNotFoundError: No module named 'cv2'
 2026-02-07 11:12:41 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69871e0084073.jpg" "0.3" 2>&1
 {"status": "ok", "annotated_path": "predicted%20images/img_69871e0084073_detected.jpg", "predictions": []}
 
+2026-02-10 03:25:06 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
+2026-02-10 03:25:46 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa5104de07.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 03:25:49 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
+2026-02-10 03:26:00 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa53b52b2c.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 03:26:03 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
+2026-02-10 03:26:10 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa5491ab11.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 03:26:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
+2026-02-10 03:26:22 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa553247e8.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:20:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
+2026-02-10 05:20:50 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac01ad78fc.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:20:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
+2026-02-10 05:21:13 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac0398395e.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:21:22 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2225 ms: Couldn't connect to server
+2026-02-10 05:21:34 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac04fbf362.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:21:36 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
+2026-02-10 05:21:48 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac05ea149f.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:24:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2251 ms: Couldn't connect to server
+2026-02-10 05:24:21 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac0f29119a.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:32:42 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
+2026-02-10 05:33:03 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac2f867e4b.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:41:24 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
+2026-02-10 05:41:47 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac501e86de.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:41:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
+2026-02-10 05:42:15 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac525622a3.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:42:23 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2247 ms: Couldn't connect to server
+2026-02-10 05:42:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac53d23999.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 05:43:07 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
+2026-02-10 05:43:51 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac5691fd99.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 07:18:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2248 ms: Couldn't connect to server
+2026-02-10 07:18:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698adbc2eeb6e.jpg" "0.3" 2>&1
+{"status": "error", "message": "model not found"}
+
+2026-02-10 07:42:01 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2224 ms: Couldn't connect to server
+2026-02-10 07:42:21 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae1471c20f.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698ae1471c20f_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.329, "points": [[245, 220], [247, 54], [95, 52], [92, 218]
+2026-02-10 07:43:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
+2026-02-10 07:44:19 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae1a814b56.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698ae1a814b56_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.324, "points": [[219, 35], [219, 1], [83, 1], [83, 35]]}, {"n
+2026-02-10 07:58:44 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
+2026-02-10 07:59:16 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae531cfb94.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698ae531cfb94_detected.jpg", "predictions": []}
+
+2026-02-10 08:10:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
+2026-02-10 08:10:31 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae7e330353.jpg" "0.3" 2>&1
+{"status": "ok", "annotated_path": "predicted%20images/img_698ae7e330353_detected.jpg", "predictions": []}
+

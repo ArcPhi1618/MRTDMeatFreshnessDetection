@@ -352,6 +352,7 @@ body {
     overflow: hidden;
     flex: 1;
     justify-content: space-between;
+    font-style: italic;
 }
 
 .landing-text {
@@ -373,10 +374,11 @@ body {
     color: #fff;
     margin: 0;
     line-height: 1.1;
-    text-align: left;
+    text-align: left;  
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-style: italic;
 }
 
 .landing-quote {
@@ -387,6 +389,7 @@ body {
     word-break: break-word;
     text-align: left;
     max-width: 90%;
+    font-style: italic;
 }
 
 .landing-img {
@@ -432,6 +435,7 @@ body {
     .landing-quote {
         text-align: center;
         padding: 0 8px;
+        font-style: italic;
     }
     .landing-img {
         max-width: 100%;
