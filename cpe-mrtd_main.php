@@ -11,10 +11,18 @@
 <div class="main compact">
     <h2>ESP32-CAM YOLO Detection</h2>
 
-    <img id="cam" crossorigin="anonymous" style="display:block;">
+    <div id="camContainer" style="position:relative; display:inline-block; width:100%;">
+        <img id="cam" crossorigin="anonymous" style="display:block; width:100%;">
+        <div id="detectionOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.05); z-index:10;">
+            <img id="detectionImg" style="width:100%; height:100%; object-fit:contain;" alt="Detection Result">
+        </div>
+    </div>
     
     <div id="ipCamDisplayContainer" style="display:none; width:100%; border:2px solid #ccc; border-radius:5px; overflow:hidden; background-color:#000; position:relative;">
         <img id="ipCamImg" style="width:100%; height:auto; display:block; max-height:600px; object-fit:contain;" alt="IP Camera Feed">
+        <div id="ipCamDetectionOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.05); z-index:10;">
+            <img id="ipCamDetectionImg" style="width:100%; height:auto; max-height:600px; object-fit:contain;" alt="IP Cam Detection Result">
+        </div>
     </div>
 
     <div>
@@ -55,6 +63,16 @@
         Loading...
     </div>
 </div>
+
+
+<!-- Hidden canvas for capturing IP camera frames -->
+<canvas id="captureCanvas" style="display:none;"></canvas>
+
+    <div class=back-btn-con>
+        <button class="back-btn" onclick="location.href='index.php'">
+            Back to Home ➜ 
+        </button>  
+    </div>
 
 <!-- Canvas overlay for drawing boxes -->
 <canvas id="overlay" style="position:fixed;left:0;top:0;pointer-events:none;display:none"></canvas>

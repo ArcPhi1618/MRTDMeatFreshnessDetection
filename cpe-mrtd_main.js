@@ -1,4 +1,3 @@
-
 const cam = document.getElementById("cam");
 const btn = document.getElementById("captureBtn");
 const conf = document.getElementById("conf");
@@ -14,7 +13,6 @@ let streamInterval = null;
 // ===== IP CAMERA CONFIG =====
 let currentCameraMode = 'esp32'; // 'esp32' or 'ipcam'
 let ipCamUrl = '';
-const ipCamToggleBtn = document.getElementById('ipCamToggleBtn');
 const ipCamInputDiv = document.getElementById('ipCamInputDiv');
 const ipCamUrlInput = document.getElementById('ipCamUrl');
 const connectIpCamBtn = document.getElementById('connectIpCamBtn');
@@ -23,17 +21,6 @@ const ipCamStatus = document.getElementById('ipCamStatus');
 const ipCamDisplayContainer = document.getElementById('ipCamDisplayContainer');
 const ipCamImg = document.getElementById('ipCamImg');
 
-ipCamToggleBtn.onclick = () => {
-    if(ipCamInputDiv.style.display === 'none'){
-        ipCamInputDiv.style.display = 'block';
-        ipCamToggleBtn.innerText = 'Disable IP Camera';
-        ipCamUrlInput.focus();
-    } else {
-        ipCamInputDiv.style.display = 'none';
-        ipCamToggleBtn.innerText = 'Enable IP Camera';
-        ipCamStatus.innerText = '';
-    }
-};
 
 connectIpCamBtn.onclick = () => {
     let url = ipCamUrlInput.value.trim();
@@ -59,7 +46,7 @@ connectIpCamBtn.onclick = () => {
     ipCamUrl = url;
     ipCamUrlInput.value = url;
     currentCameraMode = 'ipcam';
-    paused = true;
+    paused = false;
     clearInterval(streamInterval);
     ipCamStatus.innerHTML = '<span style="color:blue;">Connecting to IP camera...</span>';
     
@@ -94,7 +81,7 @@ backToEsp32Btn.onclick = () => {
 function startIpCamStream(){
     // Continuously update the img src to refresh the stream
     streamInterval = setInterval(() => {
-        if(currentCameraMode === 'ipcam' && ipCamUrl){
+        if(currentCameraMode === 'ipcam' && ipCamUrl && !paused){
             // Add timestamp to bypass cache
             ipCamImg.src = ipCamUrl + (ipCamUrl.includes('?') ? '&' : '?') + 't=' + Date.now();
         }
@@ -112,11 +99,33 @@ function startStream(){
     if(currentCameraMode === 'ipcam'){
         startIpCamStream();
     } else {
+        // Ensure camera parameters are applied before streaming
+        setEsp32CamParams();
         streamInterval = setInterval(() => {
             if(!paused){
                 cam.src = ESP32_CAM_URL + "?t=" + Date.now();
             }
         }, 500);
+    }
+}
+
+function setEsp32CamParams(){
+    try{
+        const base = ESP32_CAM_URL.replace(/\/capture\/?$/,'');
+        const cmds = [
+            {v: 'quality', val: 4},
+            {v: 'brightness', val: -2},
+            {v: 'contrast', val: -1},
+            {v: 'saturation', val: 1}
+        ];
+
+        // Fire-and-forget requests to the ESP32 control endpoint
+        cmds.forEach(c => {
+            const u = base + '/control?var=' + encodeURIComponent(c.v) + '&val=' + encodeURIComponent(c.val);
+            fetch(u).catch(() => {});
+        });
+    }catch(e){
+        console.warn('setEsp32CamParams failed', e);
     }
 }
 startStream();
@@ -142,44 +151,143 @@ btn.onclick = () => {
     paused = true;
     clearInterval(streamInterval);
     btn.disabled = true;
-    predDiv.innerHTML = "Processing...";
+    // Dim the display and overlay a centered spinner+text
+    const display = currentCameraMode === 'ipcam' ? ipCamDisplayContainer : cam;
+    display.style.transition = 'filter 0.2s';
+    display.style.filter = 'brightness(0.5)';
+    // Remove any previous overlay
+    let overlay = document.getElementById('loading-overlay');
+    if (overlay) overlay.remove();
+    overlay = document.createElement('div');
+    overlay.id = 'loading-overlay';
+    overlay.style.position = 'absolute';
+    overlay.style.top = display.offsetTop + 'px';
+    overlay.style.left = display.offsetLeft + 'px';
+    overlay.style.width = display.offsetWidth + 'px';
+    overlay.style.height = display.offsetHeight + 'px';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = 1000;
+    overlay.style.pointerEvents = 'none';
+    overlay.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:10px;">'
+        + '<div class="spinner" style="width:22px;height:22px;border:3px solid #bbb;border-top:3px solid #3498db;border-radius:50%;display:inline-block;animation:spin 1s linear infinite;"></div>'
+        + '<div style="font-size:11px;font-weight:500;text-align:left;line-height:22px;">Loading, the captured image is being processed.</div>'
+        + '</div>';
+    // Insert overlay into the same parent as display
+    display.parentElement.appendChild(overlay);
+    predDiv.innerHTML = '';
 
-    const captureUrl = currentCameraMode === 'ipcam' ? ipCamUrl : ESP32_CAM_URL;
-    
-    fetch(captureUrl)
-    .then(r => r.blob())
-    .then(blob => {
-        const fd = new FormData();
-        fd.append("image", blob, "frame.jpg");
-        fd.append("threshold", (conf.value / 100).toString());
-
-        return fetch("cpe-save_image.php", {
-            method: "POST",
-            body: fd
+    if(currentCameraMode === 'ipcam') {
+        // If the user input is an IP Webcam stream, fetch /shot.jpg for a snapshot
+        let snapshotUrl = ipCamUrl;
+        try {
+            // Try to extract base URL (protocol://host:port)
+            const urlObj = new URL(ipCamUrl);
+            snapshotUrl = urlObj.origin + '/shot.jpg';
+        } catch (e) {
+            // fallback: try to replace /video or /stream with /shot.jpg
+            snapshotUrl = ipCamUrl.replace(/\/(video|stream).*$/, '/shot.jpg');
+        }
+        fetch(snapshotUrl)
+        .then(r => r.blob())
+        .then(blob => {
+            if(!blob){
+                predDiv.innerText = "Error: Failed to capture image";
+                btn.disabled = false;
+                paused = false;
+                return;
+            }
+            const fd = new FormData();
+            fd.append("image", blob, "frame.jpg");
+            fd.append("threshold", (conf.value / 100).toString());
+            fetch("cpe-save_image.php", {
+                method: "POST",
+                body: fd
+            })
+            .then(r => r.json())
+            .then(data => {
+                btn.disabled = false;
+                // Restore display brightness and remove overlay
+                display.style.filter = '';
+                let overlay = document.getElementById('loading-overlay');
+                if (overlay) overlay.remove();
+                if(data.status !== "ok"){
+                    predDiv.innerText = "Error: " + data.message;
+                    paused = false;
+                    return;
+                }
+                let imgPath = data.path;
+                if(imgPath) {
+                    imgPath = decodeURIComponent(imgPath);
+                    ipCamImg.src = imgPath + "?t=" + Date.now();
+                }
+                renderPredictions(data.predictions);
+            })
+            .catch(err => {
+                console.error(err);
+                display.style.filter = '';
+                let overlay = document.getElementById('loading-overlay');
+                if (overlay) overlay.remove();
+                predDiv.innerHTML = '<span style="color:red;">Request failed</span>';
+                btn.disabled = false;
+                paused = false;
+            });
         });
-    })
-    .then(r => r.json())
-    .then(data => {
-        btn.disabled = false;
+    } else {
+        // ESP32: fetch from capture endpoint as before
+        fetch(ESP32_CAM_URL)
+        .then(r => r.blob())
+        .then(blob => {
+            const fd = new FormData();
+            fd.append("image", blob, "frame.jpg");
+            fd.append("threshold", (conf.value / 100).toString());
 
-        if(data.status !== "ok"){
-            predDiv.innerText = "Error: " + data.message;
-            return;
-        }
+            return fetch("cpe-save_image.php", {
+                method: "POST",
+                body: fd
+            });
+        })
+        .then(r => r.json())
+        .then(data => {
+            btn.disabled = false;
+            // Restore display brightness and remove overlay
+            display.style.filter = '';
+            let overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.remove();
 
-        // Decode path and add cache-buster
-        let imgPath = data.path;
-        if(imgPath) {
-            imgPath = decodeURIComponent(imgPath);
-            cam.src = imgPath + "?t=" + Date.now();
-        }
-        renderPredictions(data.predictions);
-    })
-    .catch(err => {
-        console.error(err);
-        predDiv.innerText = "Request failed";
-        btn.disabled = false;
-    });
+            if(data.status !== "ok"){
+                predDiv.innerText = "Error: " + data.message;
+                return;
+            }
+
+            // Decode path and add cache-buster
+            let imgPath = data.path;
+            if(imgPath) {
+                imgPath = decodeURIComponent(imgPath);
+                cam.src = imgPath + "?t=" + Date.now();
+            }
+            renderPredictions(data.predictions);
+        })
+        .catch(err => {
+            console.error(err);
+            display.style.filter = '';
+            let overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.remove();
+            predDiv.innerHTML = '<span style="color:red;">Request failed</span>';
+            btn.disabled = false;
+        });
+    // Add spinner animation CSS if not already present
+    if (!document.getElementById('spinner-style')) {
+        const style = document.createElement('style');
+        style.id = 'spinner-style';
+        style.innerHTML = `
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .spinner { border-right-color: #bbb !important; border-top-color: #3498db !important; }
+        `;
+        document.head.appendChild(style);
+    }
+    }
 };
 
 // ===== MQ-137 SENSOR FETCH =====
@@ -363,3 +471,5 @@ function renderPredictions(preds){
     });
     predDiv.appendChild(ul);
 }
+
+if (ipCamImg) ipCamImg.crossOrigin = 'anonymous';

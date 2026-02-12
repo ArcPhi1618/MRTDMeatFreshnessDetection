@@ -7,6 +7,24 @@ header('Pragma: no-cache');
 header('Expires: 0');
 header('Access-Control-Allow-Origin: *');
 
+// Function to test basic connectivity to IP/port
+function testConnectivity($host, $port) {
+    $timeout = 5; // seconds
+    $errno = 0;
+    $errstr = '';
+
+    // Try to open a socket connection
+    $connection = @fsockopen($host, $port, $errno, $errstr, $timeout);
+
+    if ($connection) {
+        fclose($connection);
+        return true;
+    } else {
+        error_log("Connectivity test failed: {$host}:{$port} - Error {$errno}: {$errstr}");
+        return false;
+    }
+}
+
 $camUrl = $_GET['cam_url'] ?? null;
 
 if (!$camUrl) {

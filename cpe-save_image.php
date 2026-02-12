@@ -9,7 +9,9 @@ if(!isset($_FILES['image'])){
     exit;
 }
 
-$filename = uniqid("img_") . ".jpg";
+// Generate filename with timestamp format: yyyy-mm-dd-HH-mm-ss
+$timestamp = date('Y-m-d-H-i-s');
+$filename = $timestamp . ".jpg";
 $imgPath = $uploadDir . $filename;
 
 if(!move_uploaded_file($_FILES['image']['tmp_name'], $imgPath)){
