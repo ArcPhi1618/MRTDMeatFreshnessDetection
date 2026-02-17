@@ -36,7 +36,7 @@
                 meat stay safe, fresh and flavorful."
             </div>
             <div class="to-main-btn">
-                    <button class="lf-btn" onclick="location.href='cpe-mrtd_main.php'">
+                    <button class="lf-btn" onclick="location.href='cpe-mrtd-main2.php'">
                         To Main Page ➜
                     </button>
             </div>

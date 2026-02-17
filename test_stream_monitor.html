@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Monitor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #fff;
+        }
+        .monitor {
+            background: #2d2d2d;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            font-family: monospace;
+        }
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        .stat:last-child {
+            border-bottom: none;
+        }
+        .label {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        .value {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .status.good {
+            background: #00aa00;
+            color: #fff;
+        }
+        .status.warning {
+            background: #aa6600;
+            color: #fff;
+        }
+        .status.bad {
+            background: #aa0000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1>📺 Stream Monitor</h1>
+        <p style="color: #aaa;">Open this in a separate window while viewing cpe-mrtd-main2.php</p>
+    </div>
+
+    <div class="monitor">
+        <div class="stat">
+            <span class="label">Frames Loaded:</span>
+            <span class="value" id="frames">0</span>
+        </div>
+        <div class="stat">
+            <span class="label">Frames/Second:</span>
+            <span class="value" id="fps">0</span>
+        </div>
+        <div class="stat">
+            <span class="label">Total Time:</span>
+            <span class="value" id="time">0s</span>
+        </div>
+        <div class="stat">
+            <span class="label">Stream Status:</span>
+            <span class="value" id="status">Waiting...</span>
+        </div>
+    </div>
+
+    <div id="statusMessage" class="status warning">
+        Checking parent window...
+    </div>
+
+    <script>
+        let startTime = null;
+        let lastFrameCount = 0;
+        let lastCheckTime = Date.now();
+
+        function updateMonitor() {
+            try {
+                // Try to access parent window or other open windows
+                let frameCount = 0;
+                let found = false;
+
+                // Check opener (if opened as popup)
+                if(window.opener && window.opener.window.__esp32FrameCount !== undefined) {
+                    frameCount = window.opener.window.__esp32FrameCount;
+                    found = true;
+                }
+
+                // Check all other windows (same origin)
+                if(!found) {
+                    try {
+                        // This won't work due to CORS, but we can listen for messages
+                    } catch(e) {}
+                }
+
+                if(found) {
+                    if(!startTime) startTime = Date.now();
+
+                    const now = Date.now();
+                    const elapsed = (now - startTime) / 1000;
+                    const currentFps = elapsed > 0 ? (frameCount / elapsed).toFixed(2) : 0;
+                    const instantFps = ((frameCount - lastFrameCount) / ((now - lastCheckTime) / 1000)).toFixed(2);
+
+                    document.getElementById('frames').textContent = frameCount;
+                    document.getElementById('fps').textContent = instantFps + ' fps (avg: ' + currentFps + ')';
+                    document.getElementById('time').textContent = elapsed.toFixed(1) + 's';
+
+                    if(frameCount > 0) {
+                        if(instantFps > 0.5) {
+                            document.getElementById('statusMessage').className = 'status good';
+                            document.getElementById('statusMessage').textContent = '✓ Stream is running! (' + instantFps + ' fps)';
+                            document.getElementById('status').textContent = 'STREAMING';
+                        } else {
+                            document.getElementById('statusMessage').className = 'status warning';
+                            document.getElementById('statusMessage').textContent = '⚠ Stream is very slow (' + instantFps + ' fps)';
+                            document.getElementById('status').textContent = 'SLOW';
+                        }
+                    } else {
+                        document.getElementById('statusMessage').className = 'status bad';
+                        document.getElementById('statusMessage').textContent = '✗ No frames detected - stream may be frozen or not started';
+                        document.getElementById('status').textContent = 'NO FRAMES';
+                    }
+
+                    lastFrameCount = frameCount;
+                    lastCheckTime = now;
+                } else {
+                    document.getElementById('statusMessage').className = 'status warning';
+                    document.getElementById('statusMessage').textContent = 'Could not connect to main window. Make sure it\'s open and this window has access.';
+                }
+            } catch(e) {
+                document.getElementById('statusMessage').className = 'status bad';
+                document.getElementById('statusMessage').textContent = 'Error: ' + e.message;
+            }
+        }
+
+        // Update every 500ms
+        setInterval(updateMonitor, 500);
+        updateMonitor();
+
+        // Instructions
+        console.log('%c📺 Stream Monitor Tips:', 'color: #00ff00; font-size: 16px; font-weight: bold;');
+        console.log('%c1. Open the main camera page in another window', 'color: #00d4ff;');
+        console.log('%c2. Open this monitor page using: window.open(\'test_stream_monitor.html\')', 'color: #00d4ff;');
+        console.log('%c3. Or use: window.open(\"test_stream_monitor.html\", \"monitor\", \"width=600,height=400\")', 'color: #00d4ff;');
+        console.log('%c4. Watch the frame counter update in real-time', 'color: #00d4ff;');
+    </script>
+</body>
+</html>

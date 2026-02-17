@@ -1,570 +1,539 @@
-2026-01-31 18:15:35
-"C:\wamp64\www\freshness/.venv/Scripts/python.exe" "C:\wamp64\www\freshness/model_predict.py" "C:\wamp64\www\freshness/uploads/2026-01-31-18-14-49-.jpg" 2>&1
-
-0: 480x640 1 Pork, 1 Spoiled Beef, 32191.2ms
-Speed: 14.5ms preprocess, 32191.2ms inference, 35.8ms postprocess per image at shape (1, 3, 480, 640)
-done
-
-
-2026-01-31 18:37:52
-"C:\wamp64\www\freshness/.venv/Scripts/python.exe" "C:\wamp64\www\freshness/model_predict.py" "C:\wamp64\www\freshness/uploads/2026-01-31-18-37-17-.jpg" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\freshness/model_predict.py", line 20, in <module>
-    results = model.predict(img, device='cpu', imgsz=640, half=True)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\ultralytics\engine\model.py", line 529, in predict
-    self.predictor.setup_model(model=self.model, verbose=is_cli)
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\ultralytics\engine\predictor.py", line 395, in setup_model
-    self.model = AutoBackend(
-                 ^^^^^^^^^^^^
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\ultralytics\nn\autobackend.py", line 223, in __init__
-    model = model.fuse(verbose=verbose)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\ultralytics\nn\tasks.py", line 236, in fuse
-    m.conv = fuse_conv_and_bn(m.conv, m.bn)  # update conv
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\wamp64\www\freshness\.venv\Lib\site-packages\ultralytics\utils\torch_utils.py", line 256, in fuse_conv_and_bn
-    conv.weight.data = torch.mm(w_bn, w_conv).view(conv.weight.shape)
-                       ^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 2359296 bytes.
-
-
-2026-02-03 22:57:06
-"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159410.1474.jpg" "0.3" 2>&1
-Creating new Ultralytics Settings v0.0.6 file  
-View Ultralytics Settings with 'yolo settings' or at 'C:\WINDOWS\system32\config\systemprofile\AppData\Roaming\Ultralytics\settings.json'
-Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
-{"status": "ok", "predictions": []}
-
-
-2026-02-03 23:05:55
-"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159935.4745.jpg" "0.3" 2>&1
-{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"kept_detections": 0}}
-{"status": "ok", "predictions": []}
-
-
-2026-02-03 23:06:41
-"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770159993.5301.jpg" "1" 2>&1
-{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"kept_detections": 0}}
-{"status": "ok", "predictions": []}
-
-
-2026-02-03 23:07:04
-"C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/1770160015.5917.jpg" "1" 2>&1
-{"debug": {"attempt": "default_640", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"attempt": "fallback_960", "total_raw_detections": 0, "raw_confidences": []}}
-{"debug": {"kept_detections": 0}}
-{"status": "ok", "predictions": []}
-
-
-2026-02-04 00:40:35 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2262 ms: Couldn't connect to server
-2026-02-04 00:40:35 SUBPROCESS_CMD=python ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/py-model_predict.py^" ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/uploads/img_69829580e2fb8.jpg^" ^"0.3^"
-
-2026-02-04 00:41:11 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2261 ms: Couldn't connect to server
-2026-02-04 00:41:11 SUBPROCESS_CMD=python ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/py-model_predict.py^" ^"C:^\wamp64^\www^\MRTDMeatFreshnessDetection/uploads/img_698295a579f22.jpg^" ^"0.3^"
-
-2026-02-04 00:41:48 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2262 ms: Couldn't connect to server
-2026-02-04 00:41:57 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698295ca30814.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698295ca30814_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.371, "points": [[292, 228], [294, 51], [118, 49], [116, 22
-2026-02-04 00:58:22 CURL_FAIL server=http://localhost:5555/predict http=500 err=
-2026-02-04 00:58:31 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698299adee6ef.jpg" "0.2" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 35, in <module>
-    results = model.predict(
-        source=image_path,
-    ...<2 lines>.
-2026-02-04 00:58:31 CURL_FAIL server=http://localhost:5555/predict http=500 err=
-2026-02-04 00:58:40 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698299b7a0cf5.jpg" "0.2" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 35, in <module>
-    results = model.predict(
-        source=image_path,
-    ...<2 lines>.
-2026-02-07 09:34:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2230 ms: Couldn't connect to server
-2026-02-07 09:34:58 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_6987072ae1df3.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_6987072ae1df3_detected.jpg", "predictions": [{"name": "Spoiled Beef", "conf": 0.592, "points": [[270, 137], [270, 0], [26, 0], [26, 137]]}, {
-2026-02-07 09:35:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2245 ms: Couldn't connect to server
-2026-02-07 09:35:59 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_6987076880973.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_6987076880973_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.829, "points": [[218, 141], [218, 2], [39, 2], [40, 142]]}
-2026-02-07 09:37:50 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2215 ms: Couldn't connect to server
-2026-02-07 09:38:09 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698707ebceff3.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698707ebceff3_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.379, "points": [[300, 132], [300, 5], [156, 5], [155, 132]
-2026-02-07 09:50:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2216 ms: Couldn't connect to server
-2026-02-07 09:50:04 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870ac9cf7a5.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
-2026-02-07 09:50:37 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aeacdf3c.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
-2026-02-07 09:50:38 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aec593c3.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:39 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2216 ms: Couldn't connect to server
-2026-02-07 09:50:39 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aed9a5a1.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:42 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2233 ms: Couldn't connect to server
-2026-02-07 09:50:42 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af042188.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:45 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
-2026-02-07 09:50:45 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af347a3b.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:48 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2246 ms: Couldn't connect to server
-2026-02-07 09:50:48 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af65b1e7.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:51 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2250 ms: Couldn't connect to server
-2026-02-07 09:50:51 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870af956eca.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:54 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
-2026-02-07 09:50:54 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870afc458bf.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:50:57 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
-2026-02-07 09:50:57 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870aff5bb11.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:00 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
-2026-02-07 09:51:00 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b02488f4.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:03 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
-2026-02-07 09:51:03 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0553984.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:06 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
-2026-02-07 09:51:06 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0858461.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:09 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
-2026-02-07 09:51:09 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0b4f14d.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:12 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2233 ms: Couldn't connect to server
-2026-02-07 09:51:12 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b0e51b32.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:15 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2232 ms: Couldn't connect to server
-2026-02-07 09:51:16 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b11460c6.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:20 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2243 ms: Couldn't connect to server
-2026-02-07 09:51:20 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b160f4e4.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:23 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2261 ms: Couldn't connect to server
-2026-02-07 09:51:23 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b195b186.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:26 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-07 09:51:26 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b1c48895.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2252 ms: Couldn't connect to server
-2026-02-07 09:51:29 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b1f4afc2.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:32 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-07 09:51:32 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b226869e.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:35 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
-2026-02-07 09:51:35 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b252e61a.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2221 ms: Couldn't connect to server
-2026-02-07 09:51:37 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b270e4b9.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2232 ms: Couldn't connect to server
-2026-02-07 09:51:38 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b27bdc5b.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:40 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
-2026-02-07 09:51:40 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b2a70977.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:55 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
-2026-02-07 09:51:55 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b38e73a2.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:51:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2228 ms: Couldn't connect to server
-2026-02-07 09:51:59 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3cc71fb.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:00 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
-2026-02-07 09:52:00 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3dca19d.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:01 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2253 ms: Couldn't connect to server
-2026-02-07 09:52:01 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b3f63ffa.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
-2026-02-07 09:52:04 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4211ca9.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:07 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2218 ms: Couldn't connect to server
-2026-02-07 09:52:07 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b455d106.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:10 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2220 ms: Couldn't connect to server
-2026-02-07 09:52:10 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b485362e.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
-2026-02-07 09:52:13 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4b5dda6.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
-2026-02-07 09:52:16 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b4e4cdb5.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:19 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
-2026-02-07 09:52:19 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b514851f.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:22 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
-2026-02-07 09:52:22 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b54525cd.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:25 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2243 ms: Couldn't connect to server
-2026-02-07 09:52:25 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b574b6c9.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:28 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
-2026-02-07 09:52:28 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b5a5e565.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:31 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2237 ms: Couldn't connect to server
-2026-02-07 09:52:31 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b5d45f11.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:34 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
-2026-02-07 09:52:34 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b605787d.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-07 09:52:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
-2026-02-07 09:52:37 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b63549a9.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:40 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2255 ms: Couldn't connect to server
-2026-02-07 09:52:40 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b66418f5.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:44 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
-2026-02-07 09:52:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b69d3fa2.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:47 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2250 ms: Couldn't connect to server
-2026-02-07 09:52:47 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b6d64ca3.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:50 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-07 09:52:50 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7044d10.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:53 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
-2026-02-07 09:52:53 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7345f0b.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:56 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2234 ms: Couldn't connect to server
-2026-02-07 09:52:56 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7653402.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:52:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
-2026-02-07 09:52:59 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7960dee.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:53:02 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
-2026-02-07 09:53:02 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b7c47caf.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 09:53:25 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
-2026-02-07 09:53:25 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69870b935b4b8.jpg" "0.3" 2>&1
-Traceback (most recent call last):
-  File "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py", line 4, in <module>
-    import cv2
-ModuleNotFoundError: No module named 'cv2'
-
-2026-02-07 11:12:02 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2255 ms: Couldn't connect to server
-2026-02-07 11:12:41 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_69871e0084073.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_69871e0084073_detected.jpg", "predictions": []}
-
-2026-02-10 03:25:06 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
-2026-02-10 03:25:46 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa5104de07.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 03:25:49 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2235 ms: Couldn't connect to server
-2026-02-10 03:26:00 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa53b52b2c.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 03:26:03 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
-2026-02-10 03:26:10 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa5491ab11.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 03:26:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2239 ms: Couldn't connect to server
-2026-02-10 03:26:22 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698aa553247e8.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:20:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
-2026-02-10 05:20:50 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac01ad78fc.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:20:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
-2026-02-10 05:21:13 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac0398395e.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:21:22 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2225 ms: Couldn't connect to server
-2026-02-10 05:21:34 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac04fbf362.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:21:36 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2231 ms: Couldn't connect to server
-2026-02-10 05:21:48 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac05ea149f.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:24:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2251 ms: Couldn't connect to server
-2026-02-10 05:24:21 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac0f29119a.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:32:42 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
-2026-02-10 05:33:03 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac2f867e4b.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:41:24 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2242 ms: Couldn't connect to server
-2026-02-10 05:41:47 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac501e86de.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:41:59 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2226 ms: Couldn't connect to server
-2026-02-10 05:42:15 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac525622a3.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:42:23 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2247 ms: Couldn't connect to server
-2026-02-10 05:42:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac53d23999.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 05:43:07 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2222 ms: Couldn't connect to server
-2026-02-10 05:43:51 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ac5691fd99.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 07:18:29 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2248 ms: Couldn't connect to server
-2026-02-10 07:18:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698adbc2eeb6e.jpg" "0.3" 2>&1
-{"status": "error", "message": "model not found"}
-
-2026-02-10 07:42:01 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2224 ms: Couldn't connect to server
-2026-02-10 07:42:21 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae1471c20f.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698ae1471c20f_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.329, "points": [[245, 220], [247, 54], [95, 52], [92, 218]
-2026-02-10 07:43:38 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
-2026-02-10 07:44:19 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae1a814b56.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698ae1a814b56_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.324, "points": [[219, 35], [219, 1], [83, 1], [83, 35]]}, {"n
-2026-02-10 07:58:44 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2229 ms: Couldn't connect to server
-2026-02-10 07:59:16 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae531cfb94.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698ae531cfb94_detected.jpg", "predictions": []}
-
-2026-02-10 08:10:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
-2026-02-10 08:10:31 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698ae7e330353.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698ae7e330353_detected.jpg", "predictions": []}
-
-2026-02-12 01:51:13 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2259 ms: Couldn't connect to server
-2026-02-12 01:51:13 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d320f2741e.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-12 01:51:18 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2257 ms: Couldn't connect to server
-2026-02-12 01:51:18 SUBPROCESS_CMD="python" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d3213b9f71.jpg" "0.3" 2>&1
-'"python"' is not recognized as an internal or external command,
-operable program or batch file.
-
-2026-02-12 02:08:45 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 02:09:14 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d362b78c72.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d362b78c72_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.556, "points": [[248, 158], [250, 7], [82, 4], [80, 155]]}]}
-
-2026-02-12 02:16:58 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2254 ms: Couldn't connect to server
-2026-02-12 02:17:21 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d3817c15ac.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d3817c15ac_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.503, "points": [[259, 172], [261, 17], [81, 14], [79, 170]]}]
-2026-02-12 02:18:12 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2255 ms: Couldn't connect to server
-2026-02-12 02:18:34 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d3861d6035.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d3861d6035_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.836, "points": [[274, 181], [275, 26], [75, 25], [74, 180]]}]
-2026-02-12 02:18:57 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2245 ms: Couldn't connect to server
-2026-02-12 02:19:05 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d388e9e349.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d388e9e349_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.816, "points": [[155, 195], [155, 38], [80, 37], [79, 195]]}]}
-
-2026-02-12 02:20:09 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
-2026-02-12 02:20:18 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d38d6e3ef0.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d38d6e3ef0_detected.jpg", "predictions": []}
-
-2026-02-12 02:20:33 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2253 ms: Couldn't connect to server
-2026-02-12 02:20:41 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d38ef040c1.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d38ef040c1_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.697, "points": [[303, 119], [308, 10], [168, 5], [164, 113
-2026-02-12 02:24:32 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
-2026-02-12 02:24:54 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d39de7bbe1.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d39de7bbe1_detected.jpg", "predictions": []}
-
-2026-02-12 02:53:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2253 ms: Couldn't connect to server
-2026-02-12 02:53:31 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d409a6fc89.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d409a6fc89_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.311, "points": [[504, 408], [514, 55], [110, 44], [100, 39
-2026-02-12 02:54:37 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2257 ms: Couldn't connect to server
-2026-02-12 02:54:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d40eb06007.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d40eb06007_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.372, "points": [[472, 418], [473, 137], [289, 137], [289, 418
-2026-02-12 02:55:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2257 ms: Couldn't connect to server
-2026-02-12 02:55:25 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/img_698d411257676.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/img_698d411257676_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.759, "points": [[626, 343], [628, 13], [265, 11], [263, 34
-2026-02-12 03:55:34 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2230 ms: Couldn't connect to server
-2026-02-12 03:55:44 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-03-55-32.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-03-55-32_detected.jpg", "predictions": []}
-
-2026-02-12 04:30:22 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2249 ms: Couldn't connect to server
-2026-02-12 04:30:30 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-04-30-19.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-04-30-19_detected.jpg", "predictions": []}
-
-2026-02-12 04:39:27 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 04:39:35 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-04-39-25.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-04-39-25_detected.jpg", "predictions": []}
-
-2026-02-12 04:40:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 04:40:25 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-04-40-14.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-04-40-14_detected.jpg", "predictions": []}
-
-2026-02-12 05:20:52 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 05:21:16 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-05-20-50.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-05-20-50_detected.jpg", "predictions": []}
-
-2026-02-12 05:34:18 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2245 ms: Couldn't connect to server
-2026-02-12 05:34:25 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-05-34-15.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-05-34-15_detected.jpg", "predictions": []}
-
-2026-02-12 05:51:21 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2240 ms: Couldn't connect to server
-2026-02-12 05:51:49 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-05-51-18.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-05-51-18_detected.jpg", "predictions": []}
-
-2026-02-12 05:56:07 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
-2026-02-12 05:56:29 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-05-56-05.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-05-56-05_detected.jpg", "predictions": []}
-
-2026-02-12 06:26:04 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2247 ms: Couldn't connect to server
-2026-02-12 06:26:19 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-26-02.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-26-02_detected.jpg", "predictions": []}
-
-2026-02-12 06:30:40 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2292 ms: Couldn't connect to server
-2026-02-12 06:30:55 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-30-38.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-30-38_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.854, "points": [[1899, 1057], [1907, -1], [1021, -8], [1013, 1051]]
-2026-02-12 06:31:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2227 ms: Couldn't connect to server
-2026-02-12 06:31:40 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-31-14.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-31-14_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.456, "points": [[1879, 1075], [1894, -18], [962, -30], [947, 1063]]
-2026-02-12 06:35:41 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2243 ms: Couldn't connect to server
-2026-02-12 06:36:06 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-35-39.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-35-39_detected.jpg", "predictions": [{"name": "Spoiled Pork", "conf": 0.738, "points": [[1883, 1040], [1896, -8], [997, -20], [984,
-2026-02-12 06:44:43 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2236 ms: Couldn't connect to server
-2026-02-12 06:45:05 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-44-41.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-44-41_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.886, "points": [[1910, 1071], [1919, -21], [1088, -28], [1079, 1065
-2026-02-12 06:46:16 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2238 ms: Couldn't connect to server
-2026-02-12 06:46:39 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-46-14.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-46-14_detected.jpg", "predictions": [{"name": "Spoiled Beef", "conf": 0.431, "points": [[1169, 785], [1173, 13], [23, 7], [19, 779]
-2026-02-12 06:46:42 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2232 ms: Couldn't connect to server
-2026-02-12 06:47:05 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-46-39.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-46-39_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.877, "points": [[1910, 1080], [1924, -33], [964, -46], [950, 1068]]
-2026-02-12 06:47:51 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 06:48:14 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-47-48.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-47-48_detected.jpg", "predictions": [{"name": "Beef", "conf": 0.885, "points": [[1897, 1063], [1906, -13], [1043, -20], [1034, 1055
-2026-02-12 06:50:20 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2241 ms: Couldn't connect to server
-2026-02-12 06:50:41 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-06-50-17.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-06-50-17_detected.jpg", "predictions": [{"name": "Spoiled Chicken", "conf": 0.761, "points": [[1191, 1061], [1203, 2], [49, -11], [36,
-2026-02-12 07:09:24 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2246 ms: Couldn't connect to server
-2026-02-12 07:09:47 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-07-09-22.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-07-09-22_detected.jpg", "predictions": []}
-
-2026-02-12 07:12:30 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2247 ms: Couldn't connect to server
-2026-02-12 07:13:03 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-07-12-28.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-07-12-28_detected.jpg", "predictions": []}
-
-2026-02-12 07:14:08 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2244 ms: Couldn't connect to server
-2026-02-12 07:14:29 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-07-14-06.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-07-14-06_detected.jpg", "predictions": []}
-
-2026-02-12 07:15:01 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2250 ms: Couldn't connect to server
-2026-02-12 07:15:27 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-07-14-58.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-07-14-58_detected.jpg", "predictions": []}
-
-2026-02-12 07:15:32 CURL_FAIL server=http://localhost:5555/predict http=0 err=Failed to connect to localhost port 5555 after 2252 ms: Couldn't connect to server
-2026-02-12 07:15:59 SUBPROCESS_CMD="C:\wamp64\www\MRTDMeatFreshnessDetection/.venv/Scripts/python.exe" "C:\wamp64\www\MRTDMeatFreshnessDetection/py-model_predict.py" "C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-12-07-15-30.jpg" "0.3" 2>&1
-{"status": "ok", "annotated_path": "predicted%20images/2026-02-12-07-15-30_detected.jpg", "predictions": []}
+2026-02-16 07:10:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40315 bytes
+2026-02-16 07:10:39 EXEC_TIME=4s RESPONSE_LENGTH=625 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-10-35_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.983, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0068, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0058, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.983, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.983, "is_fresh": true}
 
+2026-02-16 07:10:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=3483663 bytes
+2026-02-16 07:10:50 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-10-46_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9868, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0035, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9868, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9868, "is_fresh": true}
+
+2026-02-16 07:47:24 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=7148 bytes
+2026-02-16 07:47:32 EXEC_TIME=8s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-47-24_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.6446, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.6446, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0604, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.1023, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.1926, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.6446, "is_fresh": false}
+
+2026-02-16 07:47:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=7148 bytes
+2026-02-16 07:47:39 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-47-35_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.6804, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.6804, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0567, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0867, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.1762, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.6804, "is_fresh": false}
+
+2026-02-16 07:49:36 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37588 bytes
+2026-02-16 07:49:40 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-49-36_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9795, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0077, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9795, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9795, "is_fresh": true}
+
+2026-02-16 07:49:57 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35766 bytes
+2026-02-16 07:50:01 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-49-57_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9699, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0104, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0116, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0081, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9699, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9699, "is_fresh": true}
+
+2026-02-16 07:50:12 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34406 bytes
+2026-02-16 07:50:16 EXEC_TIME=4s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-50-12_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9673, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0061, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0187, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.008, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9673, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9673, "is_fresh": true}
+
+2026-02-16 07:50:37 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34319 bytes
+2026-02-16 07:50:41 EXEC_TIME=4s RESPONSE_LENGTH=626 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-50-37_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9716, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0063, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.015, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.007, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9716, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9716, "is_fresh": true}
+
+2026-02-16 07:51:04 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41502 bytes
+2026-02-16 07:51:08 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-51-04_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9746, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0035, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0084, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0135, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9746, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9746, "is_fresh": true}
+
+2026-02-16 07:51:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36396 bytes
+2026-02-16 07:51:21 EXEC_TIME=5s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-51-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9055, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0221, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0681, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9055, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9055, "is_fresh": true}
+
+2026-02-16 07:51:38 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34811 bytes
+2026-02-16 07:51:42 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-51-38_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9777, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0028, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0071, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0124, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9777, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9777, "is_fresh": true}
+
+2026-02-16 07:52:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41295 bytes
+2026-02-16 07:52:20 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-52-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9279, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0053, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0288, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0381, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9279, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9279, "is_fresh": true}
+
+2026-02-16 07:53:15 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=47309 bytes
+2026-02-16 07:53:19 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-53-15_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9695, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0055, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0042, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9695, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0208, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9695, "is_fresh": true}
+
+2026-02-16 07:54:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=46750 bytes
+2026-02-16 07:54:20 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-54-16_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9471, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0051, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0051, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9471, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0427, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9471, "is_fresh": true}
+
+2026-02-16 07:55:06 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35281 bytes
+2026-02-16 07:55:09 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-55-06_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9123, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0277, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0244, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0356, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9123, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9123, "is_fresh": true}
+
+2026-02-16 07:55:28 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=47490 bytes
+2026-02-16 07:55:32 EXEC_TIME=4s RESPONSE_LENGTH=631 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-55-28_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9548, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0124, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.005, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9548, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0278, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9548, "is_fresh": true}
+
+2026-02-16 07:55:41 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40796 bytes
+2026-02-16 07:55:44 EXEC_TIME=3s RESPONSE_LENGTH=629 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-55-41_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.892, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0061, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0138, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.892, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0881, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.892, "is_fresh": true}
+
+2026-02-16 07:55:51 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41132 bytes
+2026-02-16 07:55:55 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-55-51_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.7165, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0145, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0079, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.2612, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.7165, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.7165, "is_fresh": true}
+
+2026-02-16 07:56:04 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42822 bytes
+2026-02-16 07:56:08 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-56-04_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9573, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0075, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9573, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0286, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9573, "is_fresh": true}
+
+2026-02-16 07:56:34 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41467 bytes
+2026-02-16 07:56:37 EXEC_TIME=3s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-56-34_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9297, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9297, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0571, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9297, "is_fresh": true}
+
+2026-02-16 07:56:48 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42211 bytes
+2026-02-16 07:56:52 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-56-48_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9818, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0046, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0041, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9818, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0095, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9818, "is_fresh": true}
+
+2026-02-16 07:57:24 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41102 bytes
+2026-02-16 07:57:28 EXEC_TIME=4s RESPONSE_LENGTH=626 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-57-24_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.97, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0054, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.97, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0182, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.97, "is_fresh": true}
+
+2026-02-16 07:57:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41010 bytes
+2026-02-16 07:57:43 EXEC_TIME=3s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-57-40_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9682, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0048, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0055, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9682, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0216, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9682, "is_fresh": true}
+
+2026-02-16 07:58:02 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40941 bytes
+2026-02-16 07:58:05 EXEC_TIME=3s RESPONSE_LENGTH=631 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-58-02_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9651, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0054, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.005, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9651, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0246, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9651, "is_fresh": true}
+
+2026-02-16 07:58:29 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41466 bytes
+2026-02-16 07:58:32 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-58-29_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.5104, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0221, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.008, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.4596, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.5104, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.5104, "is_fresh": true}
+
+2026-02-16 07:58:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=46953 bytes
+2026-02-16 07:58:44 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-07-58-40_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9752, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0034, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9752, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0167, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9752, "is_fresh": true}
+
+2026-02-16 08:05:34 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40620 bytes
+2026-02-16 08:05:37 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-05-34_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9789, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0103, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0061, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9789, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9789, "is_fresh": true}
+
+2026-02-16 08:05:42 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35526 bytes
+2026-02-16 08:05:45 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-05-42_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9724, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0097, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0114, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0065, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9724, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9724, "is_fresh": true}
+
+2026-02-16 08:05:55 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39855 bytes
+2026-02-16 08:05:58 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-05-55_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9811, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0058, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0082, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0048, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9811, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9811, "is_fresh": true}
+
+2026-02-16 08:06:10 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40345 bytes
+2026-02-16 08:06:12 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-10_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9805, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0075, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9805, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9805, "is_fresh": true}
+
+2026-02-16 08:06:17 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35455 bytes
+2026-02-16 08:06:19 EXEC_TIME=2s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-17_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9729, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.008, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0126, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0065, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9729, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9729, "is_fresh": true}
+
+2026-02-16 08:06:24 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39397 bytes
+2026-02-16 08:06:27 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-24_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9624, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0123, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0177, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0076, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9624, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9624, "is_fresh": true}
+
+2026-02-16 08:06:33 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40162 bytes
+2026-02-16 08:06:36 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-33_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.8872, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0537, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0467, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0125, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.8872, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.8872, "is_fresh": true}
+
+2026-02-16 08:06:44 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40400 bytes
+2026-02-16 08:06:47 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-44_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9068, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0163, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0664, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0104, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9068, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9068, "is_fresh": true}
+
+2026-02-16 08:06:53 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40928 bytes
+2026-02-16 08:06:55 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-06-53_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9801, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0068, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0078, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0054, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9801, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9801, "is_fresh": true}
+
+2026-02-16 08:07:00 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39948 bytes
+2026-02-16 08:07:03 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-00_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.8715, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.012, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.1003, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0161, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.8715, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.8715, "is_fresh": true}
+
+2026-02-16 08:07:07 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41896 bytes
+2026-02-16 08:07:10 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-07_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9637, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0055, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0232, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0076, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9637, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9637, "is_fresh": true}
+
+2026-02-16 08:07:14 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41229 bytes
+2026-02-16 08:07:17 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-14_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9847, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0038, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0049, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9847, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9847, "is_fresh": true}
+
+2026-02-16 08:07:38 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39389 bytes
+2026-02-16 08:07:40 EXEC_TIME=2s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-38_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9799, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.005, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0083, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0068, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9799, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9799, "is_fresh": true}
+
+2026-02-16 08:07:45 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34254 bytes
+2026-02-16 08:07:48 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-45_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9639, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0121, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0155, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0085, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9639, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9639, "is_fresh": true}
+
+2026-02-16 08:07:53 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40194 bytes
+2026-02-16 08:07:56 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-07-53_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9727, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0088, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.011, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0076, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9727, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9727, "is_fresh": true}
+
+2026-02-16 08:08:01 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39826 bytes
+2026-02-16 08:08:03 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-01_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9753, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0081, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0092, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0074, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9753, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9753, "is_fresh": true}
+
+2026-02-16 08:08:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35302 bytes
+2026-02-16 08:08:19 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9779, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0078, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0073, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.007, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9779, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9779, "is_fresh": true}
+
+2026-02-16 08:08:23 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35501 bytes
+2026-02-16 08:08:25 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-23_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9694, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0106, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0102, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0098, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9694, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9694, "is_fresh": true}
+
+2026-02-16 08:08:30 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41624 bytes
+2026-02-16 08:08:32 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-30_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9778, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0058, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0062, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0101, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9778, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9778, "is_fresh": true}
+
+2026-02-16 08:08:45 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35358 bytes
+2026-02-16 08:08:47 EXEC_TIME=2s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-45_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9834, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0053, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0058, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0055, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9834, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9834, "is_fresh": true}
+
+2026-02-16 08:08:54 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40735 bytes
+2026-02-16 08:08:57 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-08-54_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9734, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0074, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0111, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0082, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9734, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9734, "is_fresh": true}
+
+2026-02-16 08:09:17 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40145 bytes
+2026-02-16 08:09:20 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-09-17_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9799, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0082, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0063, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0056, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9799, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9799, "is_fresh": true}
+
+2026-02-16 08:10:01 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36047 bytes
+2026-02-16 08:10:04 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-10-01_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9876, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9876, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0045, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0041, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9876, "is_fresh": false}
+
+2026-02-16 08:10:10 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40289 bytes
+2026-02-16 08:10:12 EXEC_TIME=2s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-10-10_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9886, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9886, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0035, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.004, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0039, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9886, "is_fresh": false}
+
+2026-02-16 08:10:21 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37317 bytes
+2026-02-16 08:10:24 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-10-21_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9874, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9874, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0044, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9874, "is_fresh": false}
+
+2026-02-16 08:10:47 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=33102 bytes
+2026-02-16 08:10:49 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-10-47_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9861, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9861, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0043, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0052, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9861, "is_fresh": false}
+
+2026-02-16 08:10:54 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41545 bytes
+2026-02-16 08:10:56 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-10-54_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9861, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9861, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0041, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0056, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9861, "is_fresh": false}
+
+2026-02-16 08:11:01 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34592 bytes
+2026-02-16 08:11:04 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-01_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9858, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9858, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0057, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9858, "is_fresh": false}
+
+2026-02-16 08:11:17 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34794 bytes
+2026-02-16 08:11:19 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-17_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9828, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9828, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0061, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0052, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0059, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9828, "is_fresh": false}
+
+2026-02-16 08:11:24 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42077 bytes
+2026-02-16 08:11:27 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-24_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9857, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9857, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0044, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0055, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9857, "is_fresh": false}
+
+2026-02-16 08:11:32 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39290 bytes
+2026-02-16 08:11:34 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-32_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9881, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9881, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0038, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0038, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9881, "is_fresh": false}
+
+2026-02-16 08:11:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40293 bytes
+2026-02-16 08:11:48 EXEC_TIME=2s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-46_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9873, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9873, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.005, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0038, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9873, "is_fresh": false}
+
+2026-02-16 08:11:54 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38568 bytes
+2026-02-16 08:11:56 EXEC_TIME=2s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-11-54_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9853, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9853, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.006, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0044, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0044, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9853, "is_fresh": false}
+
+2026-02-16 08:12:07 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40631 bytes
+2026-02-16 08:12:10 EXEC_TIME=3s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-12-07_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9862, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9862, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.004, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9862, "is_fresh": false}
+
+2026-02-16 08:12:31 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41505 bytes
+2026-02-16 08:12:33 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-12-31_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9794, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9794, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0083, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0046, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0076, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9794, "is_fresh": false}
+
+2026-02-16 08:12:37 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41259 bytes
+2026-02-16 08:12:40 EXEC_TIME=3s RESPONSE_LENGTH=620 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-12-37_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.985, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.985, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.006, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0047, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.985, "is_fresh": false}
+
+2026-02-16 08:12:44 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35713 bytes
+2026-02-16 08:12:47 EXEC_TIME=3s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-12-44_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.987, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.987, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0055, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0033, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0042, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.987, "is_fresh": false}
+
+2026-02-16 08:12:52 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40312 bytes
+2026-02-16 08:12:55 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-12-52_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9764, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9764, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0119, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0051, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0066, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9764, "is_fresh": false}
+
+2026-02-16 08:13:01 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35087 bytes
+2026-02-16 08:13:04 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-13-01_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9778, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9778, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0107, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0049, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0065, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9778, "is_fresh": false}
+
+2026-02-16 08:13:10 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39599 bytes
+2026-02-16 08:13:13 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-13-10_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9516, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9516, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0306, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0071, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0107, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9516, "is_fresh": false}
+
+2026-02-16 08:13:19 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42053 bytes
+2026-02-16 08:13:21 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-13-19_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9849, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9849, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0061, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0043, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0047, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9849, "is_fresh": false}
+
+2026-02-16 08:13:25 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41714 bytes
+2026-02-16 08:13:28 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-13-25_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9845, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9845, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0074, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0036, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0045, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9845, "is_fresh": false}
+
+2026-02-16 08:13:32 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42510 bytes
+2026-02-16 08:13:35 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-13-32_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9805, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9805, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0094, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0059, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9805, "is_fresh": false}
+
+2026-02-16 08:14:05 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42225 bytes
+2026-02-16 08:14:08 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-14-05_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9852, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9852, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0046, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0063, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9852, "is_fresh": false}
+
+2026-02-16 08:14:15 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36914 bytes
+2026-02-16 08:14:18 EXEC_TIME=3s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-14-15_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9868, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9868, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0036, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.005, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9868, "is_fresh": false}
+
+2026-02-16 08:14:27 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41867 bytes
+2026-02-16 08:14:29 EXEC_TIME=2s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-14-27_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.986, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.986, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0071, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0033, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0035, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.986, "is_fresh": false}
+
+2026-02-16 08:14:36 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36846 bytes
+2026-02-16 08:14:38 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-14-36_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9877, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9877, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0052, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0034, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0036, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9877, "is_fresh": false}
+
+2026-02-16 08:15:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36373 bytes
+2026-02-16 08:15:38 EXEC_TIME=3s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-15-35_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9873, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9873, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0052, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0035, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.004, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9873, "is_fresh": false}
+
+2026-02-16 08:15:44 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34432 bytes
+2026-02-16 08:15:46 EXEC_TIME=2s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-15-44_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9863, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9863, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.005, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0048, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9863, "is_fresh": false}
+
+2026-02-16 08:15:52 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34195 bytes
+2026-02-16 08:15:54 EXEC_TIME=2s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-15-52_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9843, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9843, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0065, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.004, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0052, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9843, "is_fresh": false}
+
+2026-02-16 08:16:02 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=43242 bytes
+2026-02-16 08:16:04 EXEC_TIME=2s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-16-02_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9858, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9858, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0033, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0045, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9858, "is_fresh": false}
+
+2026-02-16 08:16:10 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41601 bytes
+2026-02-16 08:16:13 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-08-16-10_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9872, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9872, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0037, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0034, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9872, "is_fresh": false}
+
+2026-02-16 14:02:59 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35357 bytes
+2026-02-16 14:03:06 EXEC_TIME=7s RESPONSE_LENGTH=626 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-14-02-59_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9499, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0099, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0302, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.01, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9499, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9499, "is_fresh": true}
+
+2026-02-16 14:12:34 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35357 bytes
+2026-02-16 14:12:38 EXEC_TIME=4s RESPONSE_LENGTH=626 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-14-12-34_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9499, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0099, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0302, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.01, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9499, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9499, "is_fresh": true}
+
+2026-02-16 14:13:13 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=3483663 bytes
+2026-02-16 14:13:17 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-14-13-12_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9868, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0035, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9868, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9868, "is_fresh": true}
+
+2026-02-16 18:06:17 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36766 bytes
+2026-02-16 18:06:24 EXEC_TIME=7s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-06-17_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9789, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0057, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0091, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9789, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9789, "is_fresh": true}
+
+2026-02-16 18:07:01 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=30867 bytes
+2026-02-16 18:07:05 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-01_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9681, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0095, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0162, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0062, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9681, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9681, "is_fresh": true}
+
+2026-02-16 18:07:12 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32932 bytes
+2026-02-16 18:07:16 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-12_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9778, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0092, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0066, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9778, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9778, "is_fresh": true}
+
+2026-02-16 18:07:21 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31361 bytes
+2026-02-16 18:07:26 EXEC_TIME=5s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-21_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9708, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0094, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0118, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.008, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9708, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9708, "is_fresh": true}
+
+2026-02-16 18:07:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=33200 bytes
+2026-02-16 18:07:38 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-35_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9791, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0092, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0053, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9791, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9791, "is_fresh": true}
+
+2026-02-16 18:07:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32531 bytes
+2026-02-16 18:07:50 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-46_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9299, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0384, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0214, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0104, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9299, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9299, "is_fresh": true}
+
+2026-02-16 18:07:56 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36757 bytes
+2026-02-16 18:07:59 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-07-56_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9734, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0121, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.009, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0054, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9734, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9734, "is_fresh": true}
+
+2026-02-16 18:08:04 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32087 bytes
+2026-02-16 18:08:07 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-04_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9643, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0132, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0152, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0073, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9643, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9643, "is_fresh": true}
+
+2026-02-16 18:08:12 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32693 bytes
+2026-02-16 18:08:16 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-12_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9677, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0119, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0147, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0057, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9677, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9677, "is_fresh": true}
+
+2026-02-16 18:08:21 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34898 bytes
+2026-02-16 18:08:24 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-21_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9357, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0129, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0432, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0083, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9357, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9357, "is_fresh": true}
+
+2026-02-16 18:08:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36781 bytes
+2026-02-16 18:08:39 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-35_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9029, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0309, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0515, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0146, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9029, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9029, "is_fresh": true}
+
+2026-02-16 18:08:45 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31102 bytes
+2026-02-16 18:08:48 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-45_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.8852, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0519, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0459, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0169, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.8852, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.8852, "is_fresh": true}
+
+2026-02-16 18:08:56 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31560 bytes
+2026-02-16 18:08:59 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-08-56_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9439, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0128, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0315, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0118, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9439, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9439, "is_fresh": true}
+
+2026-02-16 18:09:04 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32490 bytes
+2026-02-16 18:09:07 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-09-04_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9107, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0227, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0503, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0164, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9107, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9107, "is_fresh": true}
+
+2026-02-16 18:09:14 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32143 bytes
+2026-02-16 18:09:17 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-09-14_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9292, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0208, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0354, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0145, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9292, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9292, "is_fresh": true}
+
+2026-02-16 18:09:35 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38430 bytes
+2026-02-16 18:09:38 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-09-35_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9744, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0059, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0132, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0066, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9744, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9744, "is_fresh": true}
+
+2026-02-16 18:09:44 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31905 bytes
+2026-02-16 18:09:47 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-09-44_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9608, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0065, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0257, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0069, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9608, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9608, "is_fresh": true}
+
+2026-02-16 18:09:55 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38633 bytes
+2026-02-16 18:09:58 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-09-55_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9603, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0083, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0234, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.008, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9603, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9603, "is_fresh": true}
+
+2026-02-16 18:10:28 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=34940 bytes
+2026-02-16 18:10:31 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-10-28_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9721, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0069, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0152, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0058, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9721, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9721, "is_fresh": true}
+
+2026-02-16 18:10:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37060 bytes
+2026-02-16 18:10:43 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-10-40_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9833, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.004, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0078, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0049, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9833, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9833, "is_fresh": true}
+
+2026-02-16 18:10:50 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36551 bytes
+2026-02-16 18:10:53 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-10-50_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9725, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0091, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0113, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0071, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9725, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9725, "is_fresh": true}
+
+2026-02-16 18:10:58 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32416 bytes
+2026-02-16 18:11:01 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-10-58_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9722, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0096, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0115, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0067, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9722, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9722, "is_fresh": true}
+
+2026-02-16 18:11:09 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31562 bytes
+2026-02-16 18:11:13 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-09_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9512, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0197, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0195, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0096, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9512, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9512, "is_fresh": true}
+
+2026-02-16 18:11:20 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31851 bytes
+2026-02-16 18:11:24 EXEC_TIME=4s RESPONSE_LENGTH=625 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-20_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.977, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0083, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0094, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0053, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.977, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.977, "is_fresh": true}
+
+2026-02-16 18:11:30 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32169 bytes
+2026-02-16 18:11:33 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-30_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9739, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0081, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0114, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0066, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9739, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9739, "is_fresh": true}
+
+2026-02-16 18:11:37 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38220 bytes
+2026-02-16 18:11:41 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-37_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9634, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0093, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0202, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0071, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9634, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9634, "is_fresh": true}
+
+2026-02-16 18:11:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38286 bytes
+2026-02-16 18:11:50 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-46_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9765, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0073, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0098, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9765, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9765, "is_fresh": true}
+
+2026-02-16 18:11:57 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39123 bytes
+2026-02-16 18:12:00 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-11-56_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9813, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.006, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0071, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0056, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9813, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9813, "is_fresh": true}
+
+2026-02-16 18:12:56 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36996 bytes
+2026-02-16 18:12:59 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-12-56_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.976, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0089, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.009, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0061, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.976, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.976, "is_fresh": true}
+
+2026-02-16 18:13:03 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36959 bytes
+2026-02-16 18:13:07 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-13-03_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9768, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0073, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0095, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9768, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9768, "is_fresh": true}
+
+2026-02-16 18:15:06 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41243 bytes
+2026-02-16 18:15:10 EXEC_TIME=4s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-15-06_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.8526, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0077, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0521, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0876, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.8526, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.8526, "is_fresh": true}
+
+2026-02-16 18:15:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36173 bytes
+2026-02-16 18:15:22 EXEC_TIME=6s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-15-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9632, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0036, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.017, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0162, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9632, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9632, "is_fresh": true}
+
+2026-02-16 18:15:29 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40288 bytes
+2026-02-16 18:15:32 EXEC_TIME=3s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-15-29_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.5952, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0116, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0592, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.334, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.5952, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.5952, "is_fresh": true}
+
+2026-02-16 18:15:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=41861 bytes
+2026-02-16 18:15:43 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-15-40_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.8449, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0046, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0216, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.1289, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.8449, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.8449, "is_fresh": true}
+
+2026-02-16 18:17:05 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=39185 bytes
+2026-02-16 18:17:08 EXEC_TIME=3s RESPONSE_LENGTH=631 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-05_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9343, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0049, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.006, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9343, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0547, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9343, "is_fresh": true}
+
+2026-02-16 18:17:15 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=44415 bytes
+2026-02-16 18:17:18 EXEC_TIME=3s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-15_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9588, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0048, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9588, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0322, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9588, "is_fresh": true}
+
+2026-02-16 18:17:25 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=44876 bytes
+2026-02-16 18:17:29 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-25_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.7917, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0084, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0087, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.7917, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.1912, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.7917, "is_fresh": true}
+
+2026-02-16 18:17:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37826 bytes
+2026-02-16 18:17:43 EXEC_TIME=3s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-40_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9182, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0073, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0058, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9182, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0687, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9182, "is_fresh": true}
+
+2026-02-16 18:17:48 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36753 bytes
+2026-02-16 18:17:53 EXEC_TIME=5s RESPONSE_LENGTH=630 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-48_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.5156, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0136, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0109, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.5156, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.46, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.5156, "is_fresh": true}
+
+2026-02-16 18:17:59 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36585 bytes
+2026-02-16 18:18:04 EXEC_TIME=5s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-17-59_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9803, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0074, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0076, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9803, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9803, "is_fresh": true}
+
+2026-02-16 18:18:13 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38994 bytes
+2026-02-16 18:18:17 EXEC_TIME=4s RESPONSE_LENGTH=627 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-18-13_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9245, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0051, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.006, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0645, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9245, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9245, "is_fresh": true}
+
+2026-02-16 18:18:23 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=44046 bytes
+2026-02-16 18:18:26 EXEC_TIME=3s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-18-23_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9625, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9625, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0281, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9625, "is_fresh": true}
+
+2026-02-16 18:18:33 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=44060 bytes
+2026-02-16 18:18:38 EXEC_TIME=5s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-18-33_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9633, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0049, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9633, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0274, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9633, "is_fresh": true}
+
+2026-02-16 18:19:16 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42548 bytes
+2026-02-16 18:19:19 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-19-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.5186, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0147, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0096, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.4571, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.5186, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.5186, "is_fresh": true}
+
+2026-02-16 18:19:29 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=43638 bytes
+2026-02-16 18:19:33 EXEC_TIME=4s RESPONSE_LENGTH=632 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-19-29_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9761, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0047, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0034, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9761, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0158, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9761, "is_fresh": true}
+
+2026-02-16 18:19:42 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=42140 bytes
+2026-02-16 18:19:45 EXEC_TIME=3s RESPONSE_LENGTH=628 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-19-42_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.7397, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0115, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0085, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.2403, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.7397, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.7397, "is_fresh": true}
+
+2026-02-16 18:27:31 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35537 bytes
+2026-02-16 18:27:35 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-27-31_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9827, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9827, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0067, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0038, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0068, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9827, "is_fresh": false}
+
+2026-02-16 18:27:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36406 bytes
+2026-02-16 18:27:50 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-27-46_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9819, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9819, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0077, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0065, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9819, "is_fresh": false}
+
+2026-02-16 18:27:56 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31186 bytes
+2026-02-16 18:27:59 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-27-56_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9787, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9787, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0103, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0069, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9787, "is_fresh": false}
+
+2026-02-16 18:28:19 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36149 bytes
+2026-02-16 18:28:23 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-28-19_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9791, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9791, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0085, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0046, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0078, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9791, "is_fresh": false}
+
+2026-02-16 18:28:27 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31565 bytes
+2026-02-16 18:28:31 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-28-27_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.8914, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.8914, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0732, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0075, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0279, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.8914, "is_fresh": false}
+
+2026-02-16 18:28:37 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36278 bytes
+2026-02-16 18:28:40 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-28-37_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9422, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9422, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0316, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0064, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0198, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9422, "is_fresh": false}
+
+2026-02-16 18:28:50 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=30789 bytes
+2026-02-16 18:28:53 EXEC_TIME=3s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-28-50_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9833, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9833, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.006, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9833, "is_fresh": false}
+
+2026-02-16 18:28:59 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35346 bytes
+2026-02-16 18:29:03 EXEC_TIME=4s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-28-59_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.983, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.983, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0066, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0047, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0056, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.983, "is_fresh": false}
+
+2026-02-16 18:29:08 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=30098 bytes
+2026-02-16 18:29:11 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-29-08_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9828, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9828, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0071, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0043, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0057, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9828, "is_fresh": false}
+
+2026-02-16 18:29:23 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35643 bytes
+2026-02-16 18:29:28 EXEC_TIME=5s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-29-23_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9788, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9788, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0092, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0078, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9788, "is_fresh": false}
+
+2026-02-16 18:29:32 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=30666 bytes
+2026-02-16 18:29:36 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-29-32_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9794, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9794, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0076, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0039, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0091, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9794, "is_fresh": false}
+
+2026-02-16 18:29:40 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=35794 bytes
+2026-02-16 18:29:43 EXEC_TIME=3s RESPONSE_LENGTH=622 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-29-40_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9584, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9584, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0186, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.006, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.017, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9584, "is_fresh": false}
+
+2026-02-16 18:31:20 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32233 bytes
+2026-02-16 18:31:26 EXEC_TIME=6s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-31-20_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9102, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9102, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0736, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0055, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0107, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9102, "is_fresh": false}
+
+2026-02-16 18:31:29 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32214 bytes
+2026-02-16 18:31:32 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-31-29_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9678, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9678, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0192, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0088, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9678, "is_fresh": false}
+
+2026-02-16 18:31:36 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32378 bytes
+2026-02-16 18:31:39 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-31-36_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9701, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9701, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0194, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0065, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9701, "is_fresh": false}
+
+2026-02-16 18:31:49 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32441 bytes
+2026-02-16 18:31:52 EXEC_TIME=3s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-31-49_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.653, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.653, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0533, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.1021, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.1916, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.653, "is_fresh": false}
+
+2026-02-16 18:32:15 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32267 bytes
+2026-02-16 18:32:19 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-32-15_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9806, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9806, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0105, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0037, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0052, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9806, "is_fresh": false}
+
+2026-02-16 18:32:24 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37010 bytes
+2026-02-16 18:32:28 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-32-24_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9511, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9511, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0361, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0053, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0075, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9511, "is_fresh": false}
+
+2026-02-16 18:32:32 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32028 bytes
+2026-02-16 18:32:35 EXEC_TIME=3s RESPONSE_LENGTH=622 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-32-32_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9526, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9526, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0321, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0053, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.01, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9526, "is_fresh": false}
+
+2026-02-16 18:33:02 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36606 bytes
+2026-02-16 18:33:05 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-33-02_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9447, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9447, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0369, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0066, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0118, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9447, "is_fresh": false}
+
+2026-02-16 18:33:10 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37050 bytes
+2026-02-16 18:33:13 EXEC_TIME=3s RESPONSE_LENGTH=623 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-33-10_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9668, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9668, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.021, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0056, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0065, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9668, "is_fresh": false}
+
+2026-02-16 18:33:20 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32116 bytes
+2026-02-16 18:33:24 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-33-20_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9729, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9729, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0167, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0046, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0059, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9729, "is_fresh": false}
+
+2026-02-16 18:34:18 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32195 bytes
+2026-02-16 18:34:21 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-34-18_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9725, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9725, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0126, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0049, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0101, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9725, "is_fresh": false}
+
+2026-02-16 18:34:45 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37749 bytes
+2026-02-16 18:34:49 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-34-45_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9375, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9375, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0403, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0053, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0169, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9375, "is_fresh": false}
+
+2026-02-16 18:34:54 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37691 bytes
+2026-02-16 18:34:58 EXEC_TIME=4s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-34-54_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.8981, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.8981, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0737, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0055, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0228, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.8981, "is_fresh": false}
+
+2026-02-16 18:35:30 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32718 bytes
+2026-02-16 18:35:33 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-35-30_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9821, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9821, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0082, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0045, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0052, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9821, "is_fresh": false}
+
+2026-02-16 18:35:54 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=32508 bytes
+2026-02-16 18:35:57 EXEC_TIME=3s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-35-54_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.986, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.986, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0053, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0041, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0046, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.986, "is_fresh": false}
+
+2026-02-16 18:36:08 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=37507 bytes
+2026-02-16 18:36:13 EXEC_TIME=5s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-36-08_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9855, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9855, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0038, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0043, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9855, "is_fresh": false}
+
+2026-02-16 18:36:46 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=36299 bytes
+2026-02-16 18:36:49 EXEC_TIME=3s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-36-46_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.971, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.971, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0145, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0103, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.971, "is_fresh": false}
+
+2026-02-16 18:37:04 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=31241 bytes
+2026-02-16 18:37:08 EXEC_TIME=4s RESPONSE_LENGTH=621 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-37-04_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.965, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.965, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0176, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0048, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0126, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.965, "is_fresh": false}
+
+2026-02-16 18:37:20 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38396 bytes
+2026-02-16 18:37:23 EXEC_TIME=3s RESPONSE_LENGTH=624 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-37-20_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.9791, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.9791, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0111, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0036, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0062, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.9791, "is_fresh": false}
+
+2026-02-16 18:38:26 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=38099 bytes
+2026-02-16 18:38:29 EXEC_TIME=3s RESPONSE_LENGTH=619 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-18-38-25_onnx_classified.jpg", "predictions": [{"class": 0, "name": "Fresh Pork", "conf": 0.975, "is_fresh": false}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.975, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.015, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.004, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0061, "is_fresh": true}], "top_class": "Fresh Pork", "top_confidence": 0.975, "is_fresh": false}
+
+2026-02-16 19:22:39 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40315 bytes
+2026-02-16 19:22:43 EXEC_TIME=4s RESPONSE_LENGTH=625 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-19-22-39_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.983, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0068, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0058, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.983, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.983, "is_fresh": true}
+
+2026-02-16 20:13:49 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=40315 bytes
+2026-02-16 20:13:53 EXEC_TIME=4s RESPONSE_LENGTH=625 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-16-20-13-49_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.983, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0044, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0068, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0058, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.983, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.983, "is_fresh": true}
+
+2026-02-17 13:24:31 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2013 ms: Timeout was reached (will use subprocess)
+2026-02-17 13:24:31 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=4026497 bytes
+2026-02-17 13:24:39 EXEC_TIME=8s RESPONSE_LENGTH=658 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-13-24-29_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9819, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0097, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9819, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9819, "is_fresh": true, "inference_time_ms": 3261.22}
+
+2026-02-17 13:24:58 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2009 ms: Timeout was reached (will use subprocess)
+2026-02-17 13:24:58 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=4015811 bytes
+2026-02-17 13:25:02 EXEC_TIME=4s RESPONSE_LENGTH=662 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-13-24-56_onnx_classified.jpg", "predictions": [{"class": 2, "name": "Spoiled Chicken", "conf": 0.9414, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0073, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0064, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.9414, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.0449, "is_fresh": true}], "top_class": "Spoiled Chicken", "top_confidence": 0.9414, "is_fresh": true, "inference_time_ms": 2784.65}
+
+2026-02-17 13:25:08 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2014 ms: Timeout was reached (will use subprocess)
+2026-02-17 13:25:08 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=4190213 bytes
+2026-02-17 13:25:12 EXEC_TIME=4s RESPONSE_LENGTH=658 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-13-25-06_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9708, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0091, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0094, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0108, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9708, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9708, "is_fresh": true, "inference_time_ms": 2686.55}
+
+2026-02-17 13:25:20 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2003 ms: Timeout was reached (will use subprocess)
+2026-02-17 13:25:20 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=3522747 bytes
+2026-02-17 13:25:24 EXEC_TIME=4s RESPONSE_LENGTH=658 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-13-25-18_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9849, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0074, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0042, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0035, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9849, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9849, "is_fresh": true, "inference_time_ms": 2565.01}
+
+2026-02-17 13:59:18 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2015 ms: Timeout was reached (will use subprocess)
+2026-02-17 13:59:18 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=3522747 bytes
+2026-02-17 13:59:33 EXEC_TIME=15s RESPONSE_LENGTH=658 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-13-59-16_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9849, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0074, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0042, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0035, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9849, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9849, "is_fresh": true, "inference_time_ms": 6928.77}
+
+2026-02-17 15:36:09 ONNX_SERVER_UNAVAILABLE http=0 err=Failed to connect to localhost port 6666 after 2006 ms: Timeout was reached (will use subprocess)
+2026-02-17 15:36:09 EXECUTING model=best.onnx script=py-onnx_predict.py image_size=4026497 bytes
+2026-02-17 15:36:13 EXEC_TIME=4s RESPONSE_LENGTH=658 RESPONSE={"status": "ok", "annotated_path": "predicted_images/2026-02-17-15-36-07_onnx_classified.jpg", "predictions": [{"class": 3, "name": "Fresh Chicken", "conf": 0.9819, "is_fresh": true}], "all_classes": [{"class_id": 0, "class_name": "Fresh Pork", "confidence": 0.0097, "is_fresh": false}, {"class_id": 1, "class_name": "Spoiled Pork", "confidence": 0.0043, "is_fresh": false}, {"class_id": 2, "class_name": "Spoiled Chicken", "confidence": 0.0042, "is_fresh": true}, {"class_id": 3, "class_name": "Fresh Chicken", "confidence": 0.9819, "is_fresh": true}], "top_class": "Fresh Chicken", "top_confidence": 0.9819, "is_fresh": true, "inference_time_ms": 2335.78}
+
+2026-02-17 20:04:30 REQUEST method=POST
+2026-02-17 20:04:30 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-04-30-901c0b.jpg size=4665
+2026-02-17 20:06:42 REQUEST method=POST
+2026-02-17 20:06:42 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-06-42-789a88.jpg size=4766
+2026-02-17 20:06:54 REQUEST method=POST
+2026-02-17 20:06:54 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-06-54-4b42c6.jpg size=4739
+2026-02-17 20:09:10 REQUEST method=POST
+2026-02-17 20:09:10 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-09-10-3dbc35.jpg size=4772
+2026-02-17 20:09:30 REQUEST method=POST
+2026-02-17 20:09:30 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-09-30-3fd78a.jpg size=4811
+2026-02-17 20:09:46 REQUEST method=POST
+2026-02-17 20:09:46 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-09-46-9cabf6.jpg size=4829
+2026-02-17 20:12:26 REQUEST method=POST
+2026-02-17 20:12:26 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-12-26-ff8623.jpg size=4849
+2026-02-17 20:12:44 REQUEST method=POST
+2026-02-17 20:12:44 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-12-44-095303.jpg size=4015811
+2026-02-17 20:14:20 REQUEST method=POST
+2026-02-17 20:14:20 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-14-20-f4f8d3.jpg size=215762
+2026-02-17 20:14:35 REQUEST method=POST
+2026-02-17 20:14:35 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-14-35-0bf5cb.jpg size=213314
+2026-02-17 20:20:10 REQUEST method=POST
+2026-02-17 20:20:10 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-20-10-322356.jpg size=157548
+2026-02-17 20:20:30 REQUEST method=POST
+2026-02-17 20:20:30 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-20-30-6583ae.jpg size=172650
+2026-02-17 20:26:44 REQUEST method=POST
+2026-02-17 20:26:45 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-26-45-5a5a60.jpg size=177863
+2026-02-17 20:38:26 REQUEST method=POST
+2026-02-17 20:38:26 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-38-26-97cb1e.jpg size=177577
+2026-02-17 20:38:46 REQUEST method=POST
+2026-02-17 20:38:46 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-38-46-f0b530.jpg size=4818
+2026-02-17 20:39:02 REQUEST method=POST
+2026-02-17 20:39:02 SAVED C:\wamp64\www\MRTDMeatFreshnessDetection/uploads/2026-02-17-20-39-02-80653b.jpg size=4015811

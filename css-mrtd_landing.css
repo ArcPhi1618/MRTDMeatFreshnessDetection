@@ -223,6 +223,7 @@ body {
     padding: 10px 14px;
     background: #b71c1c;
     color: #fff;
+    font-size: 1rem;
 }
 
 #prediction, #mq137Data {
@@ -327,8 +328,16 @@ body {
     flex-wrap: wrap;
 }
 
+.header-nav a {
+    color: #dfe7ee;
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 1.4rem;
+}
+
 .hn-img {
-    height: 32px;
+    height: 48px;
 }
 
 .hni {
@@ -369,7 +378,7 @@ body {
 }
 
 .landing-title {
-    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-size: clamp(4rem, 4vw, 3rem);
     font-weight: 700;
     color: #fff;
     margin: 0;
@@ -382,7 +391,7 @@ body {
 }
 
 .landing-quote {
-    font-size: 0.95rem;
+    font-size: 1.5rem;
     color: rgba(223, 231, 238, 0.95);
     line-height: 1.45;
     overflow-wrap: break-word;
@@ -404,8 +413,8 @@ body {
 
 .lm-img {
     width: 100%;
-    max-width: 320px;
-    max-height: 280px;
+    min-width: 320px;
+    height: 280px;
     border-radius: 10px;
     height: auto;
     object-fit: contain;
@@ -462,6 +471,8 @@ body {
     gap: 0.5rem;
     height: 48px;
     width: 155px;
+    border-radius: 4px;
+    font-size: 1.5rem;
     background-color: #b71c1c;
 }
 

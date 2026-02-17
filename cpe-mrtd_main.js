@@ -1,475 +1,416 @@
-const cam = document.getElementById("cam");
-const btn = document.getElementById("captureBtn");
-const conf = document.getElementById("conf");
-const confVal = document.getElementById("confVal");
-const predDiv = document.getElementById("prediction");
-const mqDiv = document.getElementById("mq137Data");
+// cpe-mrtd_main.js
+(() => {
+  // ===== DOM =====
+  const cam = document.getElementById("esp32StreamImg");
+  const captureBtn = document.getElementById("captureBtn");
 
-const ESP32_CAM_URL = "http://192.168.4.2/capture"; // Change if your ESP32-CAM IP is different
+  // Use the span so we don't destroy your layout
+  const predSpan = document.getElementById("predictionResult");
 
-let paused = false;
-let streamInterval = null;
+  const conf = document.getElementById("conf");
+  const confVal = document.getElementById("confVal");
+  const mqDiv = document.getElementById("mq137Data");
 
-// ===== IP CAMERA CONFIG =====
-let currentCameraMode = 'esp32'; // 'esp32' or 'ipcam'
-let ipCamUrl = '';
-const ipCamInputDiv = document.getElementById('ipCamInputDiv');
-const ipCamUrlInput = document.getElementById('ipCamUrl');
-const connectIpCamBtn = document.getElementById('connectIpCamBtn');
-const backToEsp32Btn = document.getElementById('backToEsp32Btn');
-const ipCamStatus = document.getElementById('ipCamStatus');
-const ipCamDisplayContainer = document.getElementById('ipCamDisplayContainer');
-const ipCamImg = document.getElementById('ipCamImg');
+  const uploadPhotoBtn = document.getElementById("uploadPhotoBtn");
+  const photoUploadInput = document.getElementById("photoUploadInput");
 
+  const ipCamToggleBtn = document.getElementById("ipCamToggleBtn");
+  const ipCamInputDiv = document.getElementById("ipCamInputDiv");
+  const ipCamUrlInput = document.getElementById("ipCamUrl");
+  const connectIpCamBtn = document.getElementById("connectIpCamBtn");
+  const backToEsp32Btn = document.getElementById("backToEsp32Btn");
+  const ipCamStatus = document.getElementById("ipCamStatus");
 
-connectIpCamBtn.onclick = () => {
-    let url = ipCamUrlInput.value.trim();
-    if(!url){
-        ipCamStatus.innerHTML = '<span style="color:red;">Please enter an IP camera URL</span>';
-        return;
+  if (!cam) console.error("[MRTD] Missing #esp32StreamImg");
+  if (!captureBtn) console.error("[MRTD] Missing #captureBtn");
+  if (!conf) console.error("[MRTD] Missing #conf slider");
+  if (!uploadPhotoBtn) console.warn("[MRTD] Missing #uploadPhotoBtn (optional)");
+  if (!photoUploadInput) console.warn("[MRTD] Missing #photoUploadInput (optional)");
+
+  // ===== STATE =====
+  let currentMode = "esp32"; // "esp32" | "ipcam"
+  let modeBeforePause = "esp32"; // Track which mode we were in before pausing
+  let ipCamUrl = "";
+  let ipCamEnabled = false; // Track if IP camera is currently enabled/connected
+  let ipSnapshotTimer = null;
+  let esp32PollInterval = null;  // <-- Track main ESP32 polling
+  let isPaused = false;  // <-- Track if viewing prediction (paused on result image)
+
+  const esp32StreamUrl = cam?.getAttribute("src") || "http://192.168.4.2:81/stream";
+
+  // Convert /stream -> /capture; if your capture is on port 80, this line also fixes :81/capture -> /capture
+  let esp32CaptureUrl = esp32StreamUrl.replace(/\/stream(\?.*)?$/i, "/capture");
+  esp32CaptureUrl = esp32CaptureUrl.replace(":81/capture", "/capture"); // safe if capture runs on port 80
+
+  // ===== UI HELPERS =====
+  function setPredictionHtml(html) {
+    if (predSpan) predSpan.innerHTML = html;
+  }
+  function setBusy(isBusy) {
+    if (!captureBtn) return;
+    captureBtn.disabled = isBusy;
+    captureBtn.classList.toggle("btnBusy", isBusy);
+    captureBtn.textContent = isBusy ? "Processing…" : "Capture & Detect";
+  }
+
+  // ===== SLIDER =====
+  if (conf && confVal) {
+    confVal.textContent = `${conf.value}%`;
+    conf.addEventListener("input", () => {
+      confVal.textContent = `${conf.value}%`;
+    });
+  }
+
+  // ===== RESUME (called by HTML onclick="resume()") =====
+  window.resume = function resume() {
+    console.log("[MRTD] Resume button clicked. Resuming mode:", modeBeforePause);
+    
+    // Stop any running intervals
+    stopIpSnapshots();
+    if (esp32PollInterval) {
+      clearInterval(esp32PollInterval);
+      esp32PollInterval = null;
     }
     
-    // Auto-prepend http:// if no protocol is specified
-    if(!url.toLowerCase().startsWith('http://') && !url.toLowerCase().startsWith('https://')){
-        url = 'http://' + url;
-    }
+    // Mark stream as ACTIVE (not paused anymore)
+    isPaused = false;
     
-    // If URL doesn't have a path, try common paths
-    if(!url.includes('/', url.indexOf('://') + 3)) {
-        // This is just an IP:port, try common stream paths
-        if(url.match(/:\d+$/)) {
-            // Has port but no path, suggest adding /video or /stream
-            url = url + '/video';
-        }
-    }
+    // Restore to the mode we were in before capturing
+    currentMode = modeBeforePause;
     
-    ipCamUrl = url;
-    ipCamUrlInput.value = url;
-    currentCameraMode = 'ipcam';
-    paused = false;
-    clearInterval(streamInterval);
-    ipCamStatus.innerHTML = '<span style="color:blue;">Connecting to IP camera...</span>';
-    
-    switchToIpCamDisplay();
-    startIpCamStream();
-};
-
-function switchToIpCamDisplay() {
-    cam.style.display = 'none';
-    ipCamDisplayContainer.style.display = 'block';
-    ipCamStatus.innerHTML = '<span style="color:green;">✓ IP Camera stream connected</span>';
-    setTimeout(resizeOverlay, 100);
-}
-
-function switchToEsp32Display() {
-    cam.style.display = 'block';
-    ipCamDisplayContainer.style.display = 'none';
-    ipCamImg.src = '';
-    setTimeout(resizeOverlay, 100);
-}
-
-backToEsp32Btn.onclick = () => {
-    currentCameraMode = 'esp32';
-    ipCamUrl = '';
-    ipCamStatus.innerHTML = '<span style="color:green;">✓ Switched back to ESP32 camera</span>';
-    switchToEsp32Display();
-    paused = false;
-    predDiv.innerHTML = '';
-    startStream();
-};
-
-function startIpCamStream(){
-    // Continuously update the img src to refresh the stream
-    streamInterval = setInterval(() => {
-        if(currentCameraMode === 'ipcam' && ipCamUrl && !paused){
-            // Add timestamp to bypass cache
-            ipCamImg.src = ipCamUrl + (ipCamUrl.includes('?') ? '&' : '?') + 't=' + Date.now();
-        }
-    }, 500);
-}
-
-function renderIpCamFrame() {
-    // Not needed with simple img tag
-}
-
-conf.oninput = () => confVal.innerText = conf.value + "%";
-
-// ===== LIVE STREAM =====
-function startStream(){
-    if(currentCameraMode === 'ipcam'){
-        startIpCamStream();
+    if (currentMode === "ipcam" && ipCamUrl) {
+      // Resume IP camera stream
+      console.log("[MRTD] Resuming IP camera stream:", ipCamUrl);
+      if (ipCamStatus) ipCamStatus.textContent = "Resuming IP camera stream…";
+      startIpSnapshots();
     } else {
-        // Ensure camera parameters are applied before streaming
-        setEsp32CamParams();
-        streamInterval = setInterval(() => {
-            if(!paused){
-                cam.src = ESP32_CAM_URL + "?t=" + Date.now();
-            }
-        }, 500);
+      // Resume ESP32 stream
+      console.log("[MRTD] Resuming ESP32 stream:", esp32StreamUrl);
+      if (cam) {
+        cam.src = esp32StreamUrl;
+      }
+      if (ipCamStatus) ipCamStatus.textContent = "Resumed ESP32 stream.";
     }
-}
-
-function setEsp32CamParams(){
-    try{
-        const base = ESP32_CAM_URL.replace(/\/capture\/?$/,'');
-        const cmds = [
-            {v: 'quality', val: 4},
-            {v: 'brightness', val: -2},
-            {v: 'contrast', val: -1},
-            {v: 'saturation', val: 1}
-        ];
-
-        // Fire-and-forget requests to the ESP32 control endpoint
-        cmds.forEach(c => {
-            const u = base + '/control?var=' + encodeURIComponent(c.v) + '&val=' + encodeURIComponent(c.val);
-            fetch(u).catch(() => {});
-        });
-    }catch(e){
-        console.warn('setEsp32CamParams failed', e);
+    
+    // Clear predictions
+    setPredictionHtml("N/A");
+    
+    // Restore button state
+    if (captureBtn) {
+      captureBtn.disabled = false;
+      captureBtn.classList.remove("btnBusy");
+      captureBtn.textContent = "Capture & Detect";
     }
-}
-startStream();
+  };
 
-// Prepare overlay canvas size & position
-const overlay = document.getElementById('overlay');
-function resizeOverlay(){
-    const activeDisplay = currentCameraMode === 'esp32' ? cam : ipCamDisplayContainer;
-    const rect = activeDisplay.getBoundingClientRect();
-    overlay.style.left = rect.left + 'px';
-    overlay.style.top = rect.top + 'px';
-    overlay.width = rect.width;
-    overlay.height = rect.height;
-    overlay.style.display = 'block';
-}
-window.addEventListener('resize', resizeOverlay);
-cam.addEventListener('load', resizeOverlay);
-ipCamDisplayContainer.addEventListener('load', resizeOverlay);
-resizeOverlay();
+  // ===== PROXY URLS (prevents canvas tainting) =====
+  function esp32ProxyCapture() {
+    return `esp32_camera_proxy.php?url=${encodeURIComponent(
+      esp32CaptureUrl + "?t=" + Date.now()
+    )}`;
+  }
 
-// ===== CAPTURE & YOLO =====
-btn.onclick = () => {
-    paused = true;
-    clearInterval(streamInterval);
-    btn.disabled = true;
-    // Dim the display and overlay a centered spinner+text
-    const display = currentCameraMode === 'ipcam' ? ipCamDisplayContainer : cam;
-    display.style.transition = 'filter 0.2s';
-    display.style.filter = 'brightness(0.5)';
-    // Remove any previous overlay
-    let overlay = document.getElementById('loading-overlay');
-    if (overlay) overlay.remove();
-    overlay = document.createElement('div');
-    overlay.id = 'loading-overlay';
-    overlay.style.position = 'absolute';
-    overlay.style.top = display.offsetTop + 'px';
-    overlay.style.left = display.offsetLeft + 'px';
-    overlay.style.width = display.offsetWidth + 'px';
-    overlay.style.height = display.offsetHeight + 'px';
-    overlay.style.display = 'flex';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.zIndex = 1000;
-    overlay.style.pointerEvents = 'none';
-    overlay.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:10px;">'
-        + '<div class="spinner" style="width:22px;height:22px;border:3px solid #bbb;border-top:3px solid #3498db;border-radius:50%;display:inline-block;animation:spin 1s linear infinite;"></div>'
-        + '<div style="font-size:11px;font-weight:500;text-align:left;line-height:22px;">Loading, the captured image is being processed.</div>'
-        + '</div>';
-    // Insert overlay into the same parent as display
-    display.parentElement.appendChild(overlay);
-    predDiv.innerHTML = '';
+  function ipCamProxySnapshot() {
+    // If user enters host:port without scheme, add http://
+    let url = ipCamUrl.trim();
+    if (!/^https?:\/\//i.test(url)) url = "http://" + url;
 
-    if(currentCameraMode === 'ipcam') {
-        // If the user input is an IP Webcam stream, fetch /shot.jpg for a snapshot
-        let snapshotUrl = ipCamUrl;
+    // If user entered only host or host:port (no path), default snapshot path
+    try {
+      const u = new URL(url);
+      const hasPath = u.pathname && u.pathname !== "/";
+      const snap = hasPath ? u.href : (u.origin + "/shot.jpg");
+      return `cpe-ipcam_proxy.php?url=${encodeURIComponent(snap + (snap.includes("?") ? "&" : "?") + "t=" + Date.now())}`;
+    } catch {
+      // fallback: treat as direct snapshot URL
+      return `cpe-ipcam_proxy.php?url=${encodeURIComponent(url + (url.includes("?") ? "&" : "?") + "t=" + Date.now())}`;
+    }
+  }
+
+  // ===== CANVAS CAPTURE → JPEG BLOB =====
+  async function loadImage(src) {
+    return await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("Failed to load capture image via proxy."));
+      img.src = src;
+    });
+  }
+
+  async function imageToJpegBlob(img) {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth || 640;
+    canvas.height = img.naturalHeight || 480;
+
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", 0.92)
+    );
+    if (!blob) throw new Error("Canvas toBlob returned null.");
+    return blob;
+  }
+
+  async function captureCurrentFrameBlob() {
+    const src = (currentMode === "ipcam" && ipCamUrl) ? ipCamProxySnapshot() : esp32ProxyCapture();
+    const img = await loadImage(src);
+    return await imageToJpegBlob(img);
+  }
+
+  // ===== CAPTURE & DETECT =====
+  async function captureAndDetect() {
+    setBusy(true);
+    setPredictionHtml("Capturing frame…");
+
+    try {
+      const blob = await captureCurrentFrameBlob();
+      setPredictionHtml(`Uploading (${Math.round(blob.size / 1024)} KB)…`);
+
+      const fd = new FormData();
+      fd.append("image", blob, "frame.jpg");
+      fd.append("threshold", (Number(conf.value) / 100).toString());
+
+      const resp = await fetch("cpe-save_image.php", { method: "POST", body: fd });
+
+      let data;
+      try {
+        data = await resp.json();
+      } catch {
+        throw new Error("Server did not return JSON. Check PHP logs.");
+      }
+
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${data?.message || "Server error"}`);
+      if (!data || data.status !== "ok") throw new Error(data?.message || "Prediction failed.");
+
+      // Pause stream by showing annotated output
+      if (data.path) cam.src = `${data.path}?t=${Date.now()}`;
+
+      const topClass = data.top_class ?? "?";
+      const topConf = typeof data.top_confidence === "number" ? data.top_confidence : 0;
+      const inferenceMs = data.inference_time_ms ?? null;
+
+      let html = `<b>${topClass}</b> — ${(topConf * 100).toFixed(1)}%`;
+      if (inferenceMs !== null) html += `<br><span style="opacity:.85;">Inference: ${inferenceMs} ms</span>`;
+
+      if (Array.isArray(data.predictions) && data.predictions.length) {
+        html += `<ul style="margin:8px 0 0 16px;font-size:12px;">` +
+          data.predictions.map(p => `<li>${p.name} — ${(p.conf * 100).toFixed(1)}%</li>`).join("") +
+          `</ul>`;
+      }
+
+      if (data.warning) {
+        html += `<div style="margin-top:8px;font-size:12px;opacity:.85;">${data.warning}</div>`;
+      }
+
+      setPredictionHtml(html);
+      
+      // IMPORTANT: Mark stream as paused on prediction image
+      // Remember which mode we were in so Resume can restore to it
+      modeBeforePause = currentMode;
+      // Stream will NOT auto-resume until user clicks "Resume" button
+      isPaused = true;
+      console.log("[MRTD] Prediction complete. Stream PAUSED on result image. Click Resume to continue.");
+
+    } catch (err) {
+      console.error("[MRTD]", err);
+      setPredictionHtml("N/A");
+      // Keep whatever is currently shown (do NOT auto-resume stream)
+      // cam.src = esp32StreamUrl;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (captureBtn) captureBtn.addEventListener("click", captureAndDetect);
+
+  // ===== UPLOAD PHOTO BUTTON =====
+  if (uploadPhotoBtn && photoUploadInput) {
+    uploadPhotoBtn.addEventListener("click", () => {
+      console.log("[MRTD] Upload Photo button clicked");
+      photoUploadInput.value = ""; // Reset input
+      photoUploadInput.click(); // Trigger file picker
+    });
+
+    photoUploadInput.addEventListener("change", async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) {
+        console.log("[MRTD] No file selected");
+        return;
+      }
+
+      console.log("[MRTD] File selected:", file.name, file.size, "bytes");
+      setBusy(true);
+      setPredictionHtml("Uploading file…");
+      // Remember which mode we were in so Resume can restore to it
+      modeBeforePause = currentMode;
+      isPaused = true;
+
+      try {
+        const fd = new FormData();
+        fd.append("image", file, file.name);
+        fd.append("threshold", (Number(conf.value) / 100).toString());
+
+        console.log("[MRTD] Sending to cpe-save_image.php…");
+        const resp = await fetch("cpe-save_image.php", { method: "POST", body: fd });
+
+        let data;
         try {
-            // Try to extract base URL (protocol://host:port)
-            const urlObj = new URL(ipCamUrl);
-            snapshotUrl = urlObj.origin + '/shot.jpg';
-        } catch (e) {
-            // fallback: try to replace /video or /stream with /shot.jpg
-            snapshotUrl = ipCamUrl.replace(/\/(video|stream).*$/, '/shot.jpg');
+          data = await resp.json();
+        } catch {
+          throw new Error("Server did not return JSON. Check PHP logs.");
         }
-        fetch(snapshotUrl)
-        .then(r => r.blob())
-        .then(blob => {
-            if(!blob){
-                predDiv.innerText = "Error: Failed to capture image";
-                btn.disabled = false;
-                paused = false;
-                return;
-            }
-            const fd = new FormData();
-            fd.append("image", blob, "frame.jpg");
-            fd.append("threshold", (conf.value / 100).toString());
-            fetch("cpe-save_image.php", {
-                method: "POST",
-                body: fd
-            })
-            .then(r => r.json())
-            .then(data => {
-                btn.disabled = false;
-                // Restore display brightness and remove overlay
-                display.style.filter = '';
-                let overlay = document.getElementById('loading-overlay');
-                if (overlay) overlay.remove();
-                if(data.status !== "ok"){
-                    predDiv.innerText = "Error: " + data.message;
-                    paused = false;
-                    return;
-                }
-                let imgPath = data.path;
-                if(imgPath) {
-                    imgPath = decodeURIComponent(imgPath);
-                    ipCamImg.src = imgPath + "?t=" + Date.now();
-                }
-                renderPredictions(data.predictions);
-            })
-            .catch(err => {
-                console.error(err);
-                display.style.filter = '';
-                let overlay = document.getElementById('loading-overlay');
-                if (overlay) overlay.remove();
-                predDiv.innerHTML = '<span style="color:red;">Request failed</span>';
-                btn.disabled = false;
-                paused = false;
-            });
-        });
-    } else {
-        // ESP32: fetch from capture endpoint as before
-        fetch(ESP32_CAM_URL)
-        .then(r => r.blob())
-        .then(blob => {
-            const fd = new FormData();
-            fd.append("image", blob, "frame.jpg");
-            fd.append("threshold", (conf.value / 100).toString());
 
-            return fetch("cpe-save_image.php", {
-                method: "POST",
-                body: fd
-            });
-        })
-        .then(r => r.json())
-        .then(data => {
-            btn.disabled = false;
-            // Restore display brightness and remove overlay
-            display.style.filter = '';
-            let overlay = document.getElementById('loading-overlay');
-            if (overlay) overlay.remove();
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${data?.message || "Server error"}`);
+        if (!data || data.status !== "ok") throw new Error(data?.message || "Prediction failed.");
 
-            if(data.status !== "ok"){
-                predDiv.innerText = "Error: " + data.message;
-                return;
-            }
+        console.log("[MRTD] Prediction received:", data);
 
-            // Decode path and add cache-buster
-            let imgPath = data.path;
-            if(imgPath) {
-                imgPath = decodeURIComponent(imgPath);
-                cam.src = imgPath + "?t=" + Date.now();
-            }
-            renderPredictions(data.predictions);
-        })
-        .catch(err => {
-            console.error(err);
-            display.style.filter = '';
-            let overlay = document.getElementById('loading-overlay');
-            if (overlay) overlay.remove();
-            predDiv.innerHTML = '<span style="color:red;">Request failed</span>';
-            btn.disabled = false;
-        });
-    // Add spinner animation CSS if not already present
-    if (!document.getElementById('spinner-style')) {
-        const style = document.createElement('style');
-        style.id = 'spinner-style';
-        style.innerHTML = `
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .spinner { border-right-color: #bbb !important; border-top-color: #3498db !important; }
-        `;
-        document.head.appendChild(style);
-    }
-    }
-};
-
-// ===== MQ-137 SENSOR FETCH =====
-function fetchMQ137(){
-    // Try direct connection first, then fallback to PHP proxy
-    fetchMQ137WithUrl("http://192.168.4.1/mq137");
-}
-
-function fetchMQ137WithUrl(url) {
-    fetch(url)
-    .then(r => {
-        if(!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-    })
-    .then(data => {
-        mqDiv.innerHTML = `
-            <ul>
-                <li>ADC Value: ${data.adc}</li>
-                <li>Voltage: ${data.voltage.toFixed(3)} V</li>
-                <li>Rs/Ro Ratio: ${data.ratio.toFixed(3)}</li>
-                <li>NH3 Concentration: ${data.nh3_ppm.toFixed(1)} ppm</li>
-            </ul>
-        `;
-    })
-    .catch(err => {
-        // If direct connection fails, try PHP proxy
-        if(url === "http://192.168.4.1/mq137"){
-            console.warn('Direct connection to ESP32 failed, trying PHP proxy...');
-            fetchMQ137WithUrl("mq137_proxy.php");
-        } else {
-            mqDiv.innerHTML = `<strong>Error:</strong> ${err.message}<br/>Make sure ESP32 is online and connected.`;
-            console.error('MQ137 fetch error:', err);
+        // Show annotated image
+        if (data.path) {
+          cam.src = `${data.path}?t=${Date.now()}`;
+          console.log("[MRTD] Displaying annotated image:", data.path);
         }
-    });
-}
-// Fetch every second
-setInterval(fetchMQ137, 1000);
-fetchMQ137(); // initial fetch
 
-// ===== STREAM DETECTION =====
-// (Keep your existing stream detection code as is)
+        const topClass = data.top_class ?? "?";
+        const topConf = typeof data.top_confidence === "number" ? data.top_confidence : 0;
+        const inferenceMs = data.inference_time_ms ?? null;
 
-let streamDetect = false;
-let streamIntervalId = null;
-let pendingReq = false;
-let clientId = 'client_' + Math.random().toString(36).slice(2,9);
-const streamBtn = document.getElementById('streamBtn');
-const targetFpsInput = document.getElementById('targetFps');
+        let html = `<b>${topClass}</b> — ${(topConf * 100).toFixed(1)}%`;
+        if (inferenceMs !== null) html += `<br><span style="opacity:.85;">Inference: ${inferenceMs} ms</span>`;
 
-function clearCanvas(){
-    const ctx = overlay.getContext('2d');
-    ctx.clearRect(0,0,overlay.width,overlay.height);
-}
-
-// Interpolated draw: we keep prev and curr detection maps and interpolate by time
-let prevDetections = {};
-let currDetections = {};
-let lastDetectTime = 0;
-let detectInterval = 1000; // ms
-
-function drawBoxesInterpolated(){
-    const now = Date.now();
-    const dt = Math.max(1, now - lastDetectTime);
-    const t = Math.min(1, dt / detectInterval);
-
-    const blended = [];
-    const keys = new Set([...Object.keys(prevDetections), ...Object.keys(currDetections)]);
-    keys.forEach(k => {
-        const a = prevDetections[k];
-        const b = currDetections[k];
-        if(a && b){
-            const bbox = [0,0,0,0];
-            for(let i=0;i<4;i++) bbox[i] = Math.round(a.bbox[i] * (1-t) + b.bbox[i] * t);
-            const conf = a.conf * (1-t) + b.conf * t;
-            blended.push({id:k, name:b.name, conf, bbox});
-        } else if(b && !a){
-            const bbox = b.bbox.slice();
-            const conf = b.conf * t;
-            blended.push({id:k, name:b.name, conf, bbox});
-        } else if(a && !b){
-            const bbox = a.bbox.slice();
-            const conf = a.conf * (1-t);
-            if(conf > 0.05) blended.push({id:k, name:a.name, conf, bbox});
+        if (Array.isArray(data.predictions) && data.predictions.length) {
+          html += `<ul style="margin:8px 0 0 16px;font-size:12px;">` +
+            data.predictions.map(p => `<li>${p.name} — ${(p.conf * 100).toFixed(1)}%</li>`).join("") +
+            `</ul>`;
         }
+
+        if (data.warning) {
+          html += `<div style="margin-top:8px;font-size:12px;opacity:.85;">${data.warning}</div>`;
+        }
+
+        setPredictionHtml(html);
+        console.log("[MRTD] Upload & prediction complete. Click Resume to continue.");
+
+      } catch (err) {
+        console.error("[MRTD] Upload failed:", err);
+        setPredictionHtml(`Error: ${err.message}`);
+      } finally {
+        setBusy(false);
+      }
     });
+  }
 
-    const ctx = overlay.getContext('2d');
-    ctx.clearRect(0,0,overlay.width,overlay.height);
-    ctx.lineWidth = 2;
-    ctx.font = '16px Arial';
-    const rect = cam.getBoundingClientRect();
-    const imgW = cam.naturalWidth || rect.width;
-    const imgH = cam.naturalHeight || rect.height;
-    const scaleX = rect.width / imgW;
-    const scaleY = rect.height / imgH;
-
-    blended.forEach(p => {
-        const [x1,y1,x2,y2] = p.bbox;
-        const sx = x1 * scaleX, sy = y1 * scaleY, sw = (x2-x1)*scaleX, sh = (y2-y1)*scaleY;
-        ctx.strokeStyle = '#00FF00';
-        ctx.strokeRect(sx, sy, sw, sh);
-        ctx.fillStyle = '#00FF00';
-        ctx.fillText(p.name + ' ' + (p.conf*100).toFixed(1) + '%', sx, Math.max(12, sy - 4));
-    });
-}
-
-streamBtn.onclick = () => {
-    streamDetect = !streamDetect;
-    streamBtn.innerText = streamDetect ? 'Stop Stream Detect' : 'Start Stream Detect';
-
-    if(streamDetect){
-        const fps = Math.max(1, Math.min(15, parseInt(targetFpsInput.value)));
-        const interval = 1000 / fps;
-        streamIntervalId = setInterval(() => {
-            if(pendingReq) return;
-            pendingReq = true;
-
-            fetch(ESP32_CAM_URL)
-            .then(r => r.blob())
-            .then(blob => {
-                const fd = new FormData();
-                fd.append('image', blob, 'frame.jpg');
-                fd.append('threshold', (conf.value/100).toString());
-                fd.append('boxes_only', '1');
-                fd.append('client_id', clientId);
-                fd.append('imgsz', '320');
-
-                return fetch('cpe-save_image.php', {method:'POST', body:fd});
-            })
-            .then(r => r.json())
-            .then(data => {
-                pendingReq = false;
-                if(data.status !== 'ok'){
-                    console.warn('stream detect failed', data);
-                    return;
-                }
-                const now = Date.now();
-                prevDetections = JSON.parse(JSON.stringify(currDetections));
-                currDetections = {};
-                (data.predictions||[]).forEach(p => { currDetections[p.id||(p.name+'_'+Math.random().toString(36).slice(2,6))] = p; });
-                detectInterval = Math.max(200, now - lastDetectTime || 200);
-                lastDetectTime = now;
-
-            })
-            .catch(err => {
-                pendingReq = false;
-                console.error('stream detect error', err);
-            });
-        }, interval);
-    } else {
-        if(streamIntervalId) clearInterval(streamIntervalId);
-        pendingReq = false;
-        clearCanvas();
+  // ===== IP CAMERA MODE (simple snapshot refresh) =====
+  function stopIpSnapshots() {
+    if (ipSnapshotTimer) {
+      clearTimeout(ipSnapshotTimer);
+      ipSnapshotTimer = null;
     }
-};
+  }
 
-let displayIntervalId = setInterval(() => {
-    if(streamDetect) drawBoxesInterpolated();
-}, 1000/20); // 20 fps display
+  function startIpSnapshots() {
+    stopIpSnapshots();
+    const loop = () => {
+      // IMPORTANT: Do NOT update stream if currently paused on prediction image
+      if (currentMode !== "ipcam" || isPaused) return;
+      cam.src = ipCamProxySnapshot();
+      ipSnapshotTimer = setTimeout(loop, 750); // snapshot mode; don't overload server
+    };
+    loop();
+  }
 
-// ===== RESUME =====
-function resume(){
-    paused = false;
-    predDiv.innerHTML = "";
-    clearCanvas();
-    startStream();
-}
-
-// ===== SHOW PREDICTIONS =====
-function renderPredictions(preds){
-    predDiv.innerHTML = "";
-    if(!preds || preds.length === 0){
-        predDiv.innerText = "No detections";
+  if (connectIpCamBtn && ipCamUrlInput) {
+    connectIpCamBtn.addEventListener("click", () => {
+      const url = (ipCamUrlInput.value || "").trim();
+      if (!url) {
+        if (ipCamStatus) ipCamStatus.textContent = "Enter an IP camera URL.";
         return;
-    }
-    const ul = document.createElement("ul");
-    preds.forEach(p => {
-        const li = document.createElement("li");
-        li.innerText = `${p.name} — ${(p.conf*100).toFixed(1)}%`;
-        ul.appendChild(li);
+      }
+      ipCamUrl = url;
+      ipCamEnabled = true; // Mark IP camera as enabled
+      currentMode = "ipcam";
+      if (ipCamStatus) ipCamStatus.textContent = "IP cam connected (snapshot mode).";
+      startIpSnapshots();
     });
-    predDiv.appendChild(ul);
-}
+  }
 
-if (ipCamImg) ipCamImg.crossOrigin = 'anonymous';
+  if (backToEsp32Btn) {
+    backToEsp32Btn.addEventListener("click", () => {
+      // Switch back to ESP32 stream
+      ipCamEnabled = false;
+      stopIpSnapshots();
+      currentMode = "esp32";
+      modeBeforePause = "esp32";
+      if (ipCamStatus) ipCamStatus.textContent = "Switched to ESP32 stream.";
+      if (cam) cam.src = esp32StreamUrl;
+      isPaused = false;
+      setPredictionHtml("N/A");
+      if (captureBtn) {
+        captureBtn.disabled = false;
+        captureBtn.classList.remove("btnBusy");
+        captureBtn.textContent = "Capture & Detect";
+      }
+    });
+  }
+
+  // ===== INITIALIZE ESP32 STREAM ON PAGE LOAD =====
+  let streamFallbackTimer = null;
+  
+  if (cam) {
+    console.log("[MRTD] Initializing ESP32 stream from:", esp32StreamUrl);
+    
+    // Try direct MJPEG stream first
+    cam.src = esp32StreamUrl;
+    
+    // Set up error handler for stream failures
+    cam.addEventListener('error', () => {
+      console.warn("[MRTD] Stream failed to load, attempting fallback to snapshot polling");
+      clearTimeout(streamFallbackTimer);
+      // Switch to snapshot polling
+      if (!esp32PollInterval) {
+        esp32PollInterval = setInterval(() => {
+          // IMPORTANT: Do NOT update stream if currently paused on prediction image
+          if (currentMode === 'esp32' && cam && !isPaused) {
+            cam.src = esp32CaptureUrl + "?t=" + Date.now();
+          }
+        }, 500);
+      }
+    });
+    
+    // If image hasn't loaded after 4 seconds, use fallback
+    streamFallbackTimer = setTimeout(() => {
+      if (cam && cam.naturalWidth === 0 && cam.naturalHeight === 0) {
+        console.warn("[MRTD] Stream did not load in 4s, switching to snapshot polling");
+        if (!esp32PollInterval) {
+          esp32PollInterval = setInterval(() => {
+            // IMPORTANT: Do NOT update stream if currently paused on prediction image
+            if (currentMode === 'esp32' && cam && !isPaused) {
+              cam.src = esp32CaptureUrl + "?t=" + Date.now();
+            }
+          }, 500);
+        }
+      }
+    }, 4000);
+  } else {
+    console.error("[MRTD] Camera element #esp32StreamImg not found!");
+  }
+
+  // ===== MQ-137 POLLING (optional) =====
+  const MQ_ENDPOINT = "mq137_proxy.php";
+  if (mqDiv) {
+    setInterval(async () => {
+      try {
+        const r = await fetch(`${MQ_ENDPOINT}?t=${Date.now()}`);
+        if (!r.ok) return;
+        const d = await r.json();
+        const ppm = d.ppm ?? d.value ?? d.reading ?? null;
+        const status = d.status ?? "";
+        if (ppm !== null) mqDiv.textContent = `MQ-137: ${ppm} ppm ${status ? `(${status})` : ""}`;
+      } catch {
+        // silent
+      }
+    }, 1000);
+  }
+})();

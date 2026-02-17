@@ -24,8 +24,27 @@ app = Flask(__name__)
 
 # Load model once at startup
 BASE = os.path.dirname(__file__)
-MODEL_PATH = os.path.join(BASE, "models", "cpe-mf0937-01.pt")
-DETECTED_DIR = os.path.join(BASE, "predicted images")
+
+# Read model path from py-model_predict.py instead of hardcoding
+def get_model_path():
+    """Read the MODEL_PATH from py-model_predict.py dynamically"""
+    py_file = os.path.join(BASE, "py-model_predict.py")
+    try:
+        with open(py_file, 'r') as f:
+            content = f.read()
+        # Match: MODEL_PATH = os.path.join(BASE, "models", "filename")
+        import re
+        match = re.search(r'MODEL_PATH\s*=\s*os\.path\.join\s*\(\s*BASE\s*,\s*"models"\s*,\s*"([^"]+)"\s*\)', content)
+        if match:
+            return os.path.join(BASE, "models", match.group(1))
+    except Exception as e:
+        print(f"Warning: Could not read model path from {py_file}: {e}", file=sys.stderr)
+    
+    # Fallback to default
+    return os.path.join(BASE, "models", "cpe-mfmrtd-03.pt")
+
+MODEL_PATH = get_model_path()
+DETECTED_DIR = os.path.join(BASE, "predicted_images")
 os.makedirs(DETECTED_DIR, exist_ok=True)
 
 # Simple per-client smoothing state

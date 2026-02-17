@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Camera Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .camera-box {
+            border: 2px solid #555;
+            background: #000;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        #testCam {
+            width: 100%;
+            height: auto;
+            min-height: 480px;
+            max-width: 800px;
+            object-fit: contain;
+            background: #000;
+            display: block;
+            margin: 0 auto;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background: #2196F3;
+            color: white;
+            border-radius: 4px;
+        }
+        button:hover { background: #1976D2; }
+        .log {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+        .log-entry { 
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: #0066cc; }
+        input {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ESP32 Camera Test</h1>
+        
+        <div>
+            <label for="camUrl">Camera URL:</label><br><br>
+            <input type="text" id="camUrl" value="http://192.168.4.2/capture" placeholder="e.g., http://192.168.4.2/capture">
+            <button onclick="testConnection()">Test Connection</button>
+            <button onclick="testCamera()">Load Frame</button>
+            <button onclick="autoRefresh()">Auto Refresh (1 sec)</button>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+
+        <div class="camera-box">
+            <img id="testCam" alt="Camera Test" style="max-width: 100%; height: auto; min-height: 480px; background: #000;">
+        </div>
+
+        <div class="log" id="log">
+            <div class="log-entry info">Ready for testing. Click buttons above to test your ESP32 camera.</div>
+        </div>
+    </div>
+
+    <script>
+        let autoRefreshInterval = null;
+        const camUrl = document.getElementById('camUrl');
+        const testCam = document.getElementById('testCam');
+        const logDiv = document.getElementById('log');
+
+        function log(msg, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + type;
+            entry.textContent = new Date().toLocaleTimeString() + ' - ' + msg;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            logDiv.innerHTML = '';
+            log('Log cleared', 'info');
+        }
+
+        // Build proxy URL to avoid CORS when fetching directly from ESP32
+        function getProxyUrl(url) {
+            // Proxy script in project root that forwards the image
+            const proxyBase = 'esp32_camera_proxy.php';
+            return proxyBase + '?url=' + encodeURIComponent(url);
+        }
+
+        function testConnection() {
+            const url = camUrl.value.trim();
+            if (!url) {
+                log('Please enter a camera URL', 'error');
+                return;
+            }
+            log('Testing connection to: ' + url, 'info');
+            // Use proxy to test connectivity and avoid opaque no-cors responses
+            fetch(getProxyUrl(url), { method: 'GET', cache: 'no-store' })
+                .then(r => {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    log('Connection successful! Status: ' + r.status, 'success');
+                })
+                .catch(e => {
+                    log('Connection failed: ' + e.message, 'error');
+                });
+        }
+
+        function testCamera() {
+            const url = camUrl.value.trim();
+            if (!url) {
+                log('Please enter a camera URL', 'error');
+                return;
+            }
+            
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+            }
+            
+            log('Loading frame from: ' + url, 'info');
+            
+            // Use fetch through proxy to load image as blob (avoids CORS issues)
+            fetch(getProxyUrl(url), {
+                method: 'GET',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.blob();
+            })
+            .then(blob => {
+                    const objectUrl = URL.createObjectURL(blob);
+                testCam.src = objectUrl;
+                log('Frame loaded successfully! Size: ' + (blob.size / 1024).toFixed(1) + ' KB', 'success');
+            })
+            .catch(err => {
+                log('Failed to load frame: ' + err.message, 'error');
+            });
+        }
+
+        function autoRefresh() {
+            const url = camUrl.value.trim();
+            if (!url) {
+                log('Please enter a camera URL', 'error');
+                return;
+            }
+            
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                log('Auto-refresh stopped', 'info');
+                return;
+            }
+            
+            log('Starting auto-refresh (every 1.5 seconds)...', 'info');
+            let frameCount = 0;
+            
+            autoRefreshInterval = setInterval(async () => {
+                frameCount++;
+                try {
+                    const response = await fetch(getProxyUrl(url), {
+                        method: 'GET',
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    
+                    const blob = await response.blob();
+                    const objectUrl = URL.createObjectURL(blob);
+                    testCam.src = objectUrl;
+                    
+                    if (frameCount % 3 === 1) {
+                        log('Frame ' + frameCount + ' loaded (' + (blob.size / 1024).toFixed(1) + ' KB)', 'info');
+                    }
+                    
+                    // Clean up old URL
+                    setTimeout(() => URL.revokeObjectURL(objectUrl), 2000);
+                } catch (err) {
+                    log('Frame ' + frameCount + ' failed: ' + err.message, 'error');
+                }
+            }, 1500);
+        }
+
+        // Initialize
+        log('Page loaded. Enter ESP32 camera URL and click Test Connection', 'info');
+    </script>
+</body>
+</html>

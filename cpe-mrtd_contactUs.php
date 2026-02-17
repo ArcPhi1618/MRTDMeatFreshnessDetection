@@ -15,7 +15,9 @@
 
         <div class="head">
             <div class="header">
+                <a href="index.php" class="head-back">← Back</a>
                 <h1> ContactUs </h1>
+                <p>..............</p>
             </div>
             <p class="head-content"> 
                 We are the creators of DT “Fresh Track”, a research-driven 

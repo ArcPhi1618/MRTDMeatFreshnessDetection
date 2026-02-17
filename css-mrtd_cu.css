@@ -1,7 +1,7 @@
 /* Global base styles */
 * {
     box-sizing: border-box;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 html, body {
@@ -76,7 +76,7 @@ body::-webkit-scrollbar {
 
 .header h1 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     letter-spacing: 0.4px;
 }
 
@@ -273,7 +273,7 @@ body::-webkit-scrollbar {
 
 @media (max-width: 520px) {
     .header h1 {
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
     .img, .hn-img, .hl-img {
         height: 28px;
@@ -358,17 +358,26 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     overflow-y: auto;
+    width: 100%;
+}
+
+.header p {
+    color: black;
+}
+
+.header a {
+    font-size: 1.2rem;
 }
 
 .head-back {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #b71c1c;
     text-decoration: none;
 }
 
 .header h1 {
     margin: 0;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
 }
 
 .img {
@@ -378,7 +387,7 @@ body {
 .head-content, .head-content1 {
     display: flex;
     align-items: center;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #dfe7ee;
     margin: 0;
     line-height: 1.45;
@@ -444,7 +453,7 @@ body {
 
 .content p {
     margin: 0 0 0.75rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
     word-break: break-word;
 }
@@ -463,8 +472,21 @@ body {
     margin-top: auto;
 }
 
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: transparent;
+    color: #dfe7ee;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all .14s;
+}
+
 .social-icons i {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .cu-name {
@@ -475,4 +497,5 @@ body {
     align-items: center;
     font-size: 1.3rem;
     font-weight: 600;
+    margin-bottom: 1.2rem;
 }

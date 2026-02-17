@@ -1,28 +1,36 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: image/jpeg');
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
 
-// Get the IP camera URL from the request
-$data = json_decode(file_get_contents('php://input'), true);
-$url = $data['url'] ?? null;
+$url = $_GET['url'] ?? '';
+$url = trim($url);
 
-if (!$url) {
-    echo json_encode(['status' => 'error', 'message' => 'No URL provided']);
-    exit;
+if ($url === '' || !filter_var($url, FILTER_VALIDATE_URL)) {
+  http_response_code(400);
+  exit('Invalid URL');
 }
 
-// Lenient URL validation (allow IPs without strict validation)
-if (!preg_match('/^https?:\/\/.+/i', $url)) {
-    echo json_encode(['status' => 'error', 'message' => 'URL must start with http:// or https://']);
-    exit;
-}
-
-// Return proxy URL directly without testing (to avoid timeout delays)
-// The actual connection test will happen when frames are requested
-$proxyUrl = 'cpe-ipcam_stream.php?cam_url=' . urlencode($url);
-
-echo json_encode([
-    'status' => 'ok',
-    'proxy_url' => $proxyUrl,
-    'message' => 'IP camera proxy configured'
+$ctx = stream_context_create([
+  'http' => [
+    'timeout' => 6,
+    'ignore_errors' => false,
+    'user_agent' => 'IPCam-Proxy/1.0'
+  ]
 ]);
-?>
+
+$data = @file_get_contents($url, false, $ctx);
+if ($data === false || $data === null || $data === '') {
+  http_response_code(503);
+  exit('Unable to fetch IP camera image');
+}
+
+$info = @getimagesizefromstring($data);
+if ($info === false) {
+  http_response_code(500);
+  exit('Invalid image data');
+}
+
+header('Content-Length: ' . strlen($data));
+echo $data;

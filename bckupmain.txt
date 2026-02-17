@@ -64,6 +64,7 @@
     </div>
 </div>
 
+
 <!-- Hidden canvas for capturing IP camera frames -->
 <canvas id="captureCanvas" style="display:none;"></canvas>
 

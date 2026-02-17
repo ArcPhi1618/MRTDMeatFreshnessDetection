@@ -2,6 +2,8 @@
 .venv/
 venv/
 env/
+rf/
+test_venv/
 
 # Python cache
 __pycache__/
@@ -20,10 +22,30 @@ __pycache__/
 php_yolo_log.txt
 test_model_log.txt
 
-# Uploads
+# Large Model Files
+*.onnx
+*.pt
+*.h5
+*.keras
+
+# Directories with large files
 uploads/
+predicted_images/
 predicted images/
+models/
+3/
+roboflow_cache/
+temp fiess/
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Backup files
+bckupmain.txt
+*.bak
+*.tmp
+
+# Environment
+.env
+.env.local
