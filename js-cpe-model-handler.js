@@ -1,341 +1,193 @@
+// js-cpe-model-handler.js
+(() => {
+  const modelUpload = document.getElementById("modelUpload");
+  const uploadStatus = document.getElementById("uploadStatus");
+  const modelListDiv = document.querySelector(".model-list");
 
-const uploadInput = document.getElementById('modelUpload');
-const uploadStatus = document.getElementById('uploadStatus');
+  const LS_KEY = "cpe_selected_model";
+  const ALLOWED_EXT = ["onnx", "keras", "h5", "pt"];
 
-// ===== MODEL UPLOAD HANDLER =====
-console.log('[DEBUG] Setting up model upload handler from cpe-mrtd_main.js');
+  function setStatus(msg, isError = false) {
+    if (!uploadStatus) return;
+    uploadStatus.textContent = msg || "";
+    uploadStatus.style.color = isError ? "#b00020" : "#2e7d32";
+  }
 
-// Handle model upload
+  function getSelectedModel() {
+    const sel = localStorage.getItem(LS_KEY);
+    if (sel && sel.trim()) return sel;
+    // Default to best.onnx if present in model list
+    return "best.onnx";
+  }
+  function setSelectedModel(name) {
+    if (!name) localStorage.removeItem(LS_KEY);
+    else localStorage.setItem(LS_KEY, name);
+  }
 
-console.log('[DEBUG] uploadInput:', uploadInput);
-console.log('[DEBUG] uploadStatus:', uploadStatus);
+  // Expose to other scripts
+  window.getSelectedModelName = () => getSelectedModel();
+  window.setSelectedModelName = (name) => setSelectedModel(name);
 
-if (uploadInput) {
-    uploadInput.addEventListener('change', async function(e) {
-        const file = e.target.files[0];
-        console.log('[DEBUG] File selected:', file?.name, 'Size:', file?.size);
-        
-        if (!file) {
-            console.warn('[DEBUG] No file selected');
-            if (uploadStatus) uploadStatus.innerHTML = '<span style="color:orange;">No file selected</span>';
-            return;
-        }
-        
-        const allowed = ['.pt', '.h5', '.keras'];
-        const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase();
-        console.log('[DEBUG] File extension:', ext, 'Allowed:', allowed);
-        
-        if (!allowed.includes(ext)) {
-            if (uploadStatus) uploadStatus.innerHTML = '<span style="color:#163556;">Only .pt, .h5, .keras files allowed</span>';
-            console.warn('[DEBUG] Invalid file extension:', ext);
-            return;
-        }
-        
-        if (uploadStatus) uploadStatus.innerHTML = '<span style="color:blue;">Uploading ' + file.name + '...</span>';
-        
-        const formData = new FormData();
-        formData.append('model', file);
-        console.log('[DEBUG] FormData prepared, uploading to upload_model.php');
-        
+  function extOf(filename) {
+    const m = (filename || "").toLowerCase().match(/\.([a-z0-9]+)$/);
+    return m ? m[1] : "";
+  }
+  function isAllowedFile(filename) {
+    return ALLOWED_EXT.includes(extOf(filename));
+  }
+
+  async function fetchModelList() {
+    const r = await fetch("cpe-model_list.php?t=" + Date.now());
+    if (!r.ok) throw new Error("Failed to load model list.");
+    return await r.json();
+  }
+
+  function renderList(models) {
+    if (!modelListDiv) return;
+
+    const selected = getSelectedModel();
+    modelListDiv.innerHTML = "";
+
+    if (!Array.isArray(models) || models.length === 0) {
+      modelListDiv.innerHTML = `<div style="opacity:.7;font-size:13px;">No uploaded models yet.</div>`;
+      return;
+    }
+
+    models.forEach((m) => {
+      const isSel = selected && m.name === selected;
+
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.alignItems = "center";
+      row.style.justifyContent = "space-between";
+      row.style.gap = "10px";
+      row.style.padding = "8px";
+      row.style.borderRadius = "6px";
+      row.style.marginBottom = "6px";
+      row.style.border = isSel ? "1px solid #b71c1c" : "1px solid #ddd";
+      row.style.background = isSel ? "rgba(46,125,50,0.10)" : "#fff";
+      row.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)";
+      row.style.color = isSel ? "#ddd" : "#333";
+
+      const left = document.createElement("div");
+      left.style.display = "flex";
+      left.style.flexDirection = "column";
+      left.style.gap = "2px";
+
+      const title = document.createElement("div");
+      title.textContent = m.name;
+      title.style.fontWeight = "600";
+      title.style.fontSize = "13px";
+      title.style.wordBreak = "break-word";
+
+      const meta = document.createElement("div");
+      meta.style.fontSize = "12px";
+      meta.style.opacity = "0.7";
+      meta.textContent = `${m.ext.toUpperCase()} • ${(m.size_kb).toFixed(1)} KB`;
+
+      left.appendChild(title);
+      left.appendChild(meta);
+
+      const btn = document.createElement("button");
+      btn.textContent = isSel ? "Selected" : "Use";
+      btn.style.padding = "6px 10px";
+      btn.style.cursor = "pointer";
+      btn.disabled = isSel;
+
+      btn.addEventListener("click", () => {
+        setSelectedModel(m.name);
+        setStatus(`Selected model: ${m.name}`);
+        renderList(models);
+      });
+
+      // Delete button
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "X";
+      delBtn.style.padding = "6px 10px";
+      delBtn.style.cursor = "pointer";
+      delBtn.style.background = "#b71c1c";
+      delBtn.style.color = "#fff";
+      delBtn.style.border = "none";
+      delBtn.style.borderRadius = "4px";
+      delBtn.cursor = "pointer";
+      delBtn.addEventListener("click", async () => {
+        if (!confirm(`Delete model '${m.name}'? This cannot be undone.`)) return;
+        setStatus(`Deleting model: ${m.name}`);
         try {
-            const resp = await fetch('upload_model.php', { 
-                method: 'POST', 
-                body: formData 
-            });
-            console.log('[DEBUG] Upload response received, status:', resp.status);
-            
-            if (!resp.ok) {
-                throw new Error('HTTP ' + resp.status);
-            }
-            
-            const result = await resp.json();
-            console.log('[DEBUG] Upload response JSON:', result);
-            
-            if (result.status === 'ok') {
-                if (uploadStatus) uploadStatus.innerHTML = '<span style="color:green;">✓ ' + file.name + ' uploaded successfully!</span>';
-                console.log('[DEBUG] Upload successful, refreshing model list');
-                uploadInput.value = ''; // Reset file input
-                setTimeout(loadModelList, 500); // Delay slightly to ensure file is written
-            } else {
-                if (uploadStatus) uploadStatus.innerHTML = '<span style="color:red;">Upload failed: ' + (result.message || 'Unknown error') + '</span>';
-                console.warn('[DEBUG] Upload failed:', result);
-            }
+          const r = await fetch("delete_model.php", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ model: m.name })
+          });
+          const data = await r.json().catch(() => null);
+          if (!r.ok || !data || data.status !== "ok") {
+            throw new Error(data?.message || "Delete failed.");
+          }
+          setStatus(`Deleted model: ${m.name}`);
+          await refresh();
         } catch (err) {
-            console.error('[DEBUG] Upload error:', err);
-            if (uploadStatus) uploadStatus.innerHTML = '<span style="color:red;">Upload error: ' + err.message + '</span>';
+          setStatus(err.message || "Delete failed.", true);
         }
+      });
+
+      row.appendChild(left);
+      row.appendChild(btn);
+      row.appendChild(delBtn);
+      modelListDiv.appendChild(row);
     });
-    
-    // Also allow drag-and-drop
-    const modelLib = document.querySelector('.model-lib');
-    if (modelLib) {
-        modelLib.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            modelLib.style.backgroundColor = '#f0f0f0';
-        });
-        modelLib.addEventListener('dragleave', () => {
-            modelLib.style.backgroundColor = '';
-        });
-        modelLib.addEventListener('drop', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            modelLib.style.backgroundColor = '';
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                uploadInput.files = files;
-                // Trigger the change event manually
-                uploadInput.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-        });
-    }
-} else {
-    console.error('[DEBUG] modelUpload element not found!');
-}
+  }
 
-// Load model list from server with cache-busting and error handling
-// Get the current model from py-model_predict.py
-async function getCurrentModel() {
+  async function refresh() {
     try {
-        const response = await fetch('get_current_model.php');
-        const data = await response.json();
-        console.log('[DEBUG] Current model:', data.model);
-        return data.model || 'cpe-mfmrtd-03.pt';
-    } catch (err) {
-        console.error('[DEBUG] Error getting current model:', err);
-        return 'cpe-mfmrtd-03.pt'; // fallback
-    }
-}
+      const data = await fetchModelList();
+      if (data.status !== "ok") throw new Error(data.message || "Model list error");
+      renderList(data.models);
 
-// Change the active model
-async function changeModel(modelName) {
-    console.log('[DEBUG] Changing model to:', modelName);
-    try {
-        const resp = await fetch('set_model.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model: modelName })
-        });
-        const result = await resp.json();
-        console.log('[DEBUG] Change model result:', result);
-        
-        if (result.status === 'ok') {
-            console.log('[DEBUG] Model changed successfully');
-            loadModelList(); // Refresh the list to show new active model
-            return true;
-        } else {
-            console.error('[DEBUG] Failed to change model:', result.message);
-            alert('Failed to change model: ' + result.message);
-            return false;
-        }
-    } catch (err) {
-        console.error('[DEBUG] Error changing model:', err);
-        alert('Error changing model: ' + err.message);
-        return false;
+      const sel = getSelectedModel();
+      if (sel) setStatus(`Selected model: ${sel}`, false);
+      else setStatus("No model selected (default: best.onnx).", false);
+    } catch (e) {
+      console.error("[MODEL]", e);
+      setStatus(e.message || "Failed to refresh model list.", true);
     }
-}
+  }
 
-// Delete a model
-async function deleteModel(modelName) {
-    console.log('[DEBUG] Deleting model:', modelName);
-    
-    // Confirm deletion
-    if (!confirm('Are you sure you want to delete "' + modelName + '"?\n\nThis action cannot be undone.')) {
-        console.log('[DEBUG] Deletion cancelled by user');
-        return false;
+  async function uploadModel(file) {
+    if (!file) return;
+    if (!isAllowedFile(file.name)) {
+      setStatus("Only .onnx, .keras, .h5, .pt are allowed.", true);
+      return;
     }
-    
-    try {
-        const resp = await fetch('delete_model.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model: modelName })
-        });
-        const result = await resp.json();
-        console.log('[DEBUG] Delete model result:', result);
-        
-        if (result.status === 'ok') {
-            console.log('[DEBUG] Model deleted successfully');
-            if (uploadStatus) {
-                uploadStatus.innerHTML = '<span style="color:green;">✓ ' + modelName + ' deleted</span>';
-                setTimeout(() => {
-                    uploadStatus.innerHTML = '';
-                }, 3000);
-            }
-            loadModelList(); // Refresh the list
-            return true;
-        } else {
-            console.error('[DEBUG] Failed to delete model:', result.message);
-            alert('Failed to delete model: ' + result.message);
-            return false;
-        }
-    } catch (err) {
-        console.error('[DEBUG] Error deleting model:', err);
-        alert('Error deleting model: ' + err.message);
-        return false;
-    }
-}
 
-async function loadModelList() {
-    console.log('[DEBUG] loadModelList() called');
-    const listDiv = document.querySelector('.model-list');
-    if (!listDiv) {
-        console.error('[DEBUG] .model-list element not found!');
-        return;
-    }
-    listDiv.innerHTML = '<span style="color:#888;">Loading models...</span>';
-    try {
-        const url = 'list_models.php?t=' + Date.now();
-        console.log('[DEBUG] Fetching:', url);
-        const resp = await fetch(url);
-        console.log('[DEBUG] Response status:', resp.status);
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const text = await resp.text();
-        console.log('[DEBUG] Response text:', text);
-        let data;
-        try {
-            data = JSON.parse(text);
-            console.log('[DEBUG] Parsed data:', data);
-        } catch (e) {
-            console.error('[DEBUG] JSON parse error:', e);
-            listDiv.innerHTML = '<span style="color:red;">JSON parse error</span><br><pre style="font-size:11px;">' + text + '</pre>';
-            return;
-        }
-        listDiv.innerHTML = '';
-        if (data.models && data.models.length) {
-            console.log('[DEBUG] Found', data.models.length, 'models');
-            
-            // Get the currently active model
-            const currentModel = await getCurrentModel();
-            console.log('[DEBUG] Current active model:', currentModel);
-            
-            const ul = document.createElement('ul');
-            ul.style.margin = '0';
-            ul.style.paddingLeft = '0';
-            data.models.forEach(name => {
-                const isCurrentModel = name === currentModel;
-                
-                // Create container for model item
-                const liContainer = document.createElement('div');
-                liContainer.style.display = 'flex';
-                liContainer.style.alignItems = 'center';
-                liContainer.style.marginBottom = '4px';
-                liContainer.style.gap = '8px';
-                
-                // Create the model name item
-                const li = document.createElement('li');
-                li.style.flex = '1';
-                li.style.fontSize = '13px';
-                li.style.padding = '8px 12px';
-                li.style.backgroundColor = '#163556';
-                li.style.borderRadius = '3px';
-                li.style.cursor = 'pointer';
-                li.style.transition = 'all 0.2s ease';
-                li.style.listStyle = 'none';
-                li.textContent = name;
-                
-                // Check if this is the current model
-                if (isCurrentModel) {
-                    li.style.backgroundColor = '#d32f2f';
-                    li.style.color = '#fff';
-                    li.style.fontWeight = '600';
-                    li.style.borderLeft = '3px solid #ff5252';
-                    li.title = 'Current model (in use)';
-                } else {
-                    li.style.borderLeft = '3px solid #0a1a2b';
-                }
-                
-                // Add hover effect
-                li.addEventListener('mouseenter', function() {
-                    if (!isCurrentModel) {
-                        this.style.backgroundColor = '#1a4566';
-                        this.style.borderLeftColor = '#d32f2f';
-                    }
-                });
-                li.addEventListener('mouseleave', function() {
-                    if (!isCurrentModel) {
-                        this.style.backgroundColor = '#163556';
-                        this.style.borderLeftColor = '#0a1a2b';
-                    }
-                });
-                
-                // Add click handler to switch model
-                li.addEventListener('click', async function() {
-                    if (!isCurrentModel) {
-                        if (uploadStatus) uploadStatus.innerHTML = '<span style="color:blue;">Switching to ' + name + '...</span>';
-                        const success = await changeModel(name);
-                        if (success) {
-                            if (uploadStatus) {
-                                uploadStatus.innerHTML = '<span style="color:green;">✓ Now using ' + name + '</span>';
-                                setTimeout(() => {
-                                    uploadStatus.innerHTML = '';
-                                }, 3000);
-                            }
-                        }
-                    }
-                });
-                
-                // Create delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = '✕';
-                deleteBtn.style.width = '28px';
-                deleteBtn.style.height = '28px';
-                deleteBtn.style.padding = '0';
-                deleteBtn.style.backgroundColor = '#d32f2f';
-                deleteBtn.style.color = '#fff';
-                deleteBtn.style.border = 'none';
-                deleteBtn.style.borderRadius = '3px';
-                deleteBtn.style.cursor = 'pointer';
-                deleteBtn.style.fontSize = '16px';
-                deleteBtn.style.fontWeight = 'bold';
-                deleteBtn.style.transition = 'all 0.2s ease';
-                deleteBtn.style.opacity = isCurrentModel ? '0.3' : '1';
-                deleteBtn.style.pointerEvents = isCurrentModel ? 'none' : 'auto';
-                deleteBtn.title = isCurrentModel ? 'Cannot delete active model' : 'Delete model';
-                
-                deleteBtn.addEventListener('mouseenter', function() {
-                    if (!isCurrentModel) {
-                        this.style.backgroundColor = '#b71c1c';
-                        this.style.transform = 'scale(1.1)';
-                    }
-                });
-                deleteBtn.addEventListener('mouseleave', function() {
-                    if (!isCurrentModel) {
-                        this.style.backgroundColor = '#d32f2f';
-                        this.style.transform = 'scale(1)';
-                    }
-                });
-                
-                // Add delete click handler
-                deleteBtn.addEventListener('click', async function(e) {
-                    e.stopPropagation(); // Prevent triggering model switch
-                    if (!isCurrentModel) {
-                        await deleteModel(name);
-                    }
-                });
-                
-                // Add to container
-                const listItem = document.createElement('li');
-                listItem.style.listStyle = 'none';
-                listItem.style.display = 'flex';
-                listItem.style.alignItems = 'center';
-                listItem.style.gap = '8px';
-                listItem.appendChild(li);
-                listItem.appendChild(deleteBtn);
-                
-                ul.appendChild(listItem);
-            });
-            listDiv.appendChild(ul);
-        } else {
-            console.log('[DEBUG] No models found');
-            listDiv.textContent = 'No models uploaded.';
-            listDiv.style.color = '#999';
-        }
-    } catch (err) {
-        console.error('[DEBUG] loadModelList error:', err);
-        listDiv.innerHTML = '<span style="color:red;">Failed to load: ' + err.message + '</span>';
-    }
-}
+    const fd = new FormData();
+    fd.append("model", file, file.name);
 
-console.log('[DEBUG] Calling loadModelList() at initialization');
-loadModelList();
+    setStatus(`Uploading ${file.name}…`, false);
+
+    const r = await fetch("cpe-model_upload.php", { method: "POST", body: fd });
+    const data = await r.json().catch(() => null);
+
+    if (!r.ok || !data || data.status !== "ok") {
+      throw new Error(data?.message || "Model upload failed.");
+    }
+
+    setSelectedModel(data.name);
+    setStatus(`Uploaded + selected: ${data.name}`, false);
+    await refresh();
+  }
+
+  if (modelUpload) {
+    modelUpload.addEventListener("change", async (e) => {
+      const f = e.target.files?.[0];
+      modelUpload.value = "";
+      try {
+        await uploadModel(f);
+      } catch (err) {
+        console.error("[MODEL]", err);
+        setStatus(err.message || "Upload failed.", true);
+      }
+    });
+  }
+
+  refresh();
+})();

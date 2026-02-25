@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ext = strtolower(pathinfo($modelName, PATHINFO_EXTENSION));
     
     if ($ext === 'onnx') {
-        // Update py-onnx_predict.py for ONNX models (now in models/)
+        // Update py-onnx_predict.py for ONNX models
         $pyFile = __DIR__ . '/py-onnx_predict.py';
         $newPath = 'MODEL_PATH = os.path.join(BASE, "models", "' . $modelName . '")';
         
@@ -106,18 +106,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         error_log('[SET_MODEL] ONNX model changed to: ' . $modelName);
         echo json_encode(['status' => 'ok', 'message' => 'ONNX model changed to ' . $modelName]);
         exit;
-    } else {
-        // Update py-model_predict.py for regular models (YOLO .pt, .h5, .keras)
-        $pyFile = __DIR__ . '/py-model_predict.py';
+    } elseif ($ext === 'pt') {
+        // Update py-pt_predict.py for PyTorch models
+        $pyFile = __DIR__ . '/py-pt_predict.py';
         $newPath = 'MODEL_PATH = os.path.join(BASE, "models", "' . $modelName . '")';
         
         if (!updateModelPath($pyFile, $newPath)) {
-            send_json_error('Could not update model path', ['model'=>$modelName, 'file'=>$pyFile]);
+            send_json_error('Could not update PyTorch model path', ['model'=>$modelName, 'file'=>$pyFile]);
         }
         
-        error_log('[SET_MODEL] Model changed to: ' . $modelName);
-        echo json_encode(['status' => 'ok', 'message' => 'Model changed to ' . $modelName]);
+        error_log('[SET_MODEL] PyTorch model changed to: ' . $modelName);
+        echo json_encode(['status' => 'ok', 'message' => 'PyTorch model changed to ' . $modelName]);
         exit;
+    } elseif ($ext === 'h5' || $ext === 'keras') {
+        // Update py-keras_predict.py for Keras models
+        $pyFile = __DIR__ . '/py-keras_predict.py';
+        $newPath = 'MODEL_PATH = os.path.join(BASE, "models", "' . $modelName . '")';
+        
+        if (!updateModelPath($pyFile, $newPath)) {
+            send_json_error('Could not update Keras model path', ['model'=>$modelName, 'file'=>$pyFile]);
+        }
+        
+        error_log('[SET_MODEL] Keras model changed to: ' . $modelName);
+        echo json_encode(['status' => 'ok', 'message' => 'Keras model changed to ' . $modelName]);
+        exit;
+    } else {
+        send_json_error('Unsupported model type', ['ext'=>$ext, 'model'=>$modelName]);
     }
 }
 

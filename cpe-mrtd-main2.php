@@ -51,6 +51,14 @@
             </div>
         </div>
 
+
+
+        <!-- ============================================================ -->
+        <!-- MAIN CONTENT AREA -->
+        <!-- ============================================================ -->
+
+
+
         <div class="main-content">
             <div class="cam-sec" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#000;">
                 <img id="esp32StreamImg" src="http://192.168.4.2:81/stream" alt="ESP32-CAM Stream" style="width:100%;height:100%;object-fit:cover;display:block;border:2px solid #0f0;background:#000;">
@@ -67,11 +75,11 @@
             </div>
 
             <!-- REQUIRED by JS: confidence slider -->
-            <div class="threshold-control" style="background:#f5f5f5; padding:15px; border-radius:5px; margin:10px 0;">
+            <div class="threshold-control" style="background:#f5f5f5; padding:15px; border-radius:5px; margin:10px 0; color=black;">
               <div style="display:flex; align-items:center; gap:15px;">
-                <label style="font-weight:bold; min-width:120px;">Confidence Threshold:</label>
+                <label class=""style="font-weight:bold; min-width:120px; color:#000000;">Confidence Threshold:</label>
                 <input type="range" id="conf" min="1" max="100" value="50" style="flex:1; cursor:pointer;">
-                <span id="confVal" style="font-weight:bold; min-width:50px; text-align:right;">50%</span>
+                <span id="confVal" style="font-weight:bold; min-width:50px; text-align:right; color:#000000;">50%</span>
               </div>
             </div>
 
@@ -89,7 +97,7 @@
             <div class="sensor-sec">
                 <h3>MQ-137 Sensor Readings</h3>
                  <div id="mq137Data">
-                    Loading...
+                    <div id="mq137Values">Loading...</div>
                 </div>
             </div>
 
@@ -111,9 +119,14 @@
 
     <script src="js-capture_database.js"></script>
     <script src="js-capture_db_integration.js"></script>
-    <script src="cpe-mrtd_main.js"></script>
+
+    <!-- MUST be before cpe-mrtd_main.js -->
     <script src="js-cpe-model-handler.js"></script>
+
+    <script src="cpe-mrtd_main.js"></script>
     <script src="js-cpe-selection-handler.js"></script>
+
+
 
     <script>
       // (optional) place page-specific JS here

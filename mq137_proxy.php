@@ -1,47 +1,51 @@
 <?php
 header('Content-Type: application/json');
+header('Cache-Control: no-cache, no-store, must-revalidate');
 
-$url = 'http://192.168.4.1/mq137';
+$hosts = [
+  'http://192.168.4.1/mq137',
+  'http://192.168.4.2/mq137',
+];
 
-try {
-    $context = stream_context_create([
-        'http' => [
-            'timeout' => 5,
-            'ignore_errors' => true
-        ]
-    ]);
-    
-    $response = @file_get_contents($url, false, $context);
-    
-    if ($response === false) {
-        http_response_code(503);
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Could not connect to ESP32 at ' . $url,
-            'debug' => 'Check if ESP32 is online and IP is correct'
-        ]);
-        exit;
-    }
-    
-    // Try to decode as JSON to validate
-    $data = json_decode($response, true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        http_response_code(502);
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Invalid JSON from ESP32',
-            'raw_response' => substr($response, 0, 200)
-        ]);
-        exit;
-    }
-    
-    echo $response;
-    
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode([
-        'status' => 'error',
-        'message' => $e->getMessage()
-    ]);
+function try_fetch($url) {
+  $ch = curl_init($url);
+  curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CONNECTTIMEOUT_MS => 250, // fast connect fail
+    CURLOPT_TIMEOUT_MS => 800,        // total time cap
+    CURLOPT_FAILONERROR => false,
+    CURLOPT_HTTPHEADER => ['Accept: application/json'],
+  ]);
+
+  $resp = curl_exec($ch);
+  $err  = curl_error($ch);
+  $code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+  curl_close($ch);
+
+  if ($resp === false || $resp === null || trim($resp) === '') return [false, null];
+
+  $data = json_decode($resp, true);
+  if (json_last_error() !== JSON_ERROR_NONE) return [false, null];
+
+  return [true, $data];
 }
-?>
+
+foreach ($hosts as $u) {
+  [$ok, $data] = try_fetch($u);
+  if ($ok) {
+    $ppm = $data['ppm'] ?? $data['value'] ?? $data['reading'] ?? null;
+    echo json_encode([
+      'status' => 'ok',
+      'source' => $u,
+      'ppm' => $ppm,
+      'raw' => $data
+    ]);
+    exit;
+  }
+}
+
+echo json_encode([
+  'status' => 'offline',
+  'ppm' => null,
+  'message' => 'MQ-137 sensor endpoint not reachable'
+]);

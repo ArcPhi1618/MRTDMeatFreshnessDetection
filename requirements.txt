@@ -1,3 +1,9 @@
+numpy 
+tensorflow
+torch
 ultralytics
 opencv-python
-torch
+Pillow
+onnxruntime
+rembg
+flask

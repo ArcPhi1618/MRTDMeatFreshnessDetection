@@ -1,10 +1,9 @@
 import sys, os, json, time
 import cv2
 import numpy as np
-import onnxruntime as ort
 
 if len(sys.argv) < 4:
-    print(json.dumps({'status':'error','message':'Usage: py-onnx_predict.py <image_path> <threshold> <model_path>'}))
+    print(json.dumps({'status':'error','message':'Usage: py-pt_predict.py <image_path> <threshold> <model_path>'}))
     sys.exit(1)
 
 image_path = sys.argv[1]
@@ -20,7 +19,14 @@ if not os.path.exists(model_path):
     print(json.dumps({'status':'error','message':'model not found'}))
     sys.exit(1)
 
+try:
+    import torch
+except Exception as e:
+    print(json.dumps({'status':'error','message':'PyTorch not installed', 'detail': str(e)}))
+    sys.exit(1)
+
 BASE = os.path.dirname(__file__)
+MODEL_PATH = os.path.join(BASE, "models", "yolov8s-obb.pt")
 UPLOADS_DIR = os.path.join(BASE, "uploads")
 os.makedirs(UPLOADS_DIR, exist_ok=True)
 
@@ -37,31 +43,35 @@ if os.path.exists(ENV_FILE):
 CLASS_LIST = METADATA.get('CLASS_LIST', ['Class 0','Class 1','Class 2','Class 3','Class 4','Class 5'])
 FRESH_INDICES = [2, 3, 5]
 
-def preprocess(img_path):
-    img = cv2.imread(img_path)
-    if img is None:
-        return None, None
-    orig = img.copy()
-    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    resized = cv2.resize(rgb, (224, 224))
-    x = resized.astype(np.float32) / 255.0
-    x = np.transpose(x, (2, 0, 1))
-    x = np.expand_dims(x, axis=0)
-    return orig, x
-
-orig_img, input_tensor = preprocess(image_path)
-if orig_img is None:
+img = cv2.imread(image_path)
+if img is None:
     print(json.dumps({'status':'error','message':'failed to read image'}))
     sys.exit(1)
 
-session = ort.InferenceSession(model_path)
-input_name = session.get_inputs()[0].name
-outputs = session.run(None, {input_name: input_tensor})
-out = outputs[0]
-logits = out[0] if len(out.shape) == 2 else out
+orig = img.copy()
+rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+resized = cv2.resize(rgb, (224, 224))
+x = resized.astype(np.float32) / 255.0
+x = np.transpose(x, (2,0,1))  # CHW
+x = np.expand_dims(x, axis=0) # NCHW
 
-def softmax(x):
-    e = np.exp(x - np.max(x))
+device = torch.device("cpu")
+try:
+    model = torch.jit.load(model_path, map_location=device)
+except Exception as e:
+    print(json.dumps({'status':'error','message':'Failed to load .pt (must be TorchScript)', 'detail': str(e)}))
+    sys.exit(1)
+
+model.eval()
+with torch.no_grad():
+    inp = torch.from_numpy(x).to(device)
+    out = model(inp)
+    if isinstance(out, (tuple, list)):
+        out = out[0]
+    logits = out.squeeze().cpu().numpy()
+
+def softmax(v):
+    e = np.exp(v - np.max(v))
     return e / e.sum()
 
 probs = softmax(logits)
@@ -80,13 +90,11 @@ for i, p in enumerate(probs):
     if i == top_idx or conf >= threshold:
         predictions.append({'class': i, 'name': cname, 'conf': round(conf,4), 'is_fresh': is_fresh})
 
-# annotate + save in uploads/
 label = f"{top_name}: {top_conf:.2%}"
-img_bgr = orig_img.copy()
+img_bgr = orig.copy()
 color = (0,255,0) if top_conf >= threshold else (0,0,255)
-font = cv2.FONT_HERSHEY_SIMPLEX
 cv2.rectangle(img_bgr, (10, 5), (10 + 12*len(label), 40), color, -1)
-cv2.putText(img_bgr, label, (15, 30), font, 0.9, (255,255,255), 2)
+cv2.putText(img_bgr, label, (15, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255,255,255), 2)
 
 base = os.path.basename(image_path)
 name_no_ext = os.path.splitext(base)[0]

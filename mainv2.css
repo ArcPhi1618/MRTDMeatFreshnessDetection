@@ -11,7 +11,7 @@ body {
 .main {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
+    min-height: 160vh;
     max-width: 1400px;
     align-items: flex-start;
     margin: 0 auto;
@@ -125,6 +125,13 @@ body {
     background-color: #1a4566;
     border-left-color: #d32f2f;
     transform: translateX(2px);
+}
+
+.model-list li.active {
+    background-color: #233e5c;
+    border-left: 3px solid #d32f2f;
+    color: #fff;
+    font-weight: bold;
 }
 
 .model-list > span {
@@ -298,7 +305,7 @@ body {
     border: 1px solid aliceblue;
     border-radius: 4px;
     width: 100%;
-    min-height: 12rem;
+    min-height: 17rem;
     padding-left: 16px;
  }
 

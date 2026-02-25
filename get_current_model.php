@@ -38,7 +38,23 @@ if ($onnxModel && file_exists(__DIR__ . '/models/' . $onnxModel)) {
     exit;
 }
 
-// Otherwise, check regular model
+// Check PyTorch model
+$ptModel = getModelPathFromFile(__DIR__ . '/py-pt_predict.py');
+if ($ptModel && file_exists(__DIR__ . '/models/' . $ptModel)) {
+    error_log('[GET_CURRENT_MODEL] Detected PyTorch model in models/: ' . $ptModel);
+    echo json_encode(['status' => 'ok', 'model' => $ptModel]);
+    exit;
+}
+
+// Check Keras model
+$kerasModel = getModelPathFromFile(__DIR__ . '/py-keras_predict.py');
+if ($kerasModel && file_exists(__DIR__ . '/models/' . $kerasModel)) {
+    error_log('[GET_CURRENT_MODEL] Detected Keras model in models/: ' . $kerasModel);
+    echo json_encode(['status' => 'ok', 'model' => $kerasModel]);
+    exit;
+}
+
+// Fallback to py-model_predict.py for backward compatibility
 $regularModel = getModelPathFromFile(__DIR__ . '/py-model_predict.py');
 if ($regularModel && file_exists(__DIR__ . '/models/' . $regularModel)) {
     error_log('[GET_CURRENT_MODEL] Detected regular model: ' . $regularModel);
