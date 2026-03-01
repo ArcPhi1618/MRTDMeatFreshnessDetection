@@ -8,7 +8,7 @@ from PIL import Image, ImageOps
 import onnxruntime as ort
 
 # --- CONFIG ---
-ENV_PATH = os.path.join(os.path.dirname(__file__), 'roboflow_cache', 'cpe-phl', '5', 'environment.json')
+ENV_PATH = os.path.join(os.path.dirname(__file__), 'environment15.json')
 with open(ENV_PATH, 'r') as f:
 	env = json.load(f)
 

@@ -8,6 +8,6 @@ from inference import get_model
 # Carmina KxKzFfECtJXjL4aNCals
 
 model = get_model(
-    model_id="cpe-phl/8", 
+    model_id="cpe-phl/15", 
     api_key="KxKzFfECtJXjL4aNCals" # Use your actual API Key
 )

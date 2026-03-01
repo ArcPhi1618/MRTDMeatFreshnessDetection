@@ -12,7 +12,7 @@ function try_fetch($url) {
   curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CONNECTTIMEOUT_MS => 250, // fast connect fail
-    CURLOPT_TIMEOUT_MS => 800,        // total time cap
+    CURLOPT_TIMEOUT_MS => 10000,        // total time cap
     CURLOPT_FAILONERROR => false,
     CURLOPT_HTTPHEADER => ['Accept: application/json'],
   ]);
